@@ -9,11 +9,12 @@ namespace picard_bManageHospital
 {
     public class RelayCommand : ICommand
     {
-
         #region variables
         /// <summary>
         /// action à executer
         /// </summary>
+        /// 
+
         readonly Action<object> _execute;
         /// <summary>
         /// test pour savoir si on peut executer la commande
@@ -22,16 +23,16 @@ namespace picard_bManageHospital
         #endregion
 
         #region Constructeur
-
         /// <summary>
         /// Crée une nouvelle commande que l'on peut toujours executer
         /// </summary>
         /// <param name="execute">Le code à executer</param>
+        /// 
         public RelayCommand(Action<object> execute)
             : this(execute, null)
         {
-        }
 
+        }
         /// <summary>
         /// Crée une nouvelle commande
         /// </summary>
@@ -41,11 +42,9 @@ namespace picard_bManageHospital
         {
             if (execute == null)
                 throw new ArgumentNullException("execute");
-
             _execute = execute;
             _canExecute = canExecute;
         }
-
         #endregion
 
         #region ICommand Members
@@ -55,7 +54,6 @@ namespace picard_bManageHospital
         {
             return _canExecute == null ? true : _canExecute(parameter);
         }
-
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
@@ -66,10 +64,6 @@ namespace picard_bManageHospital
         {
             _execute(parameter);
         }
-
         #endregion // ICommand Members
-
-
-
     }
 }

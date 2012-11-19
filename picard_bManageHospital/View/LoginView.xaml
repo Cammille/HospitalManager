@@ -1,8 +1,16 @@
 ﻿<Window x:Class="picard_bManageHospital.View.LoginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Behaviours="clr-namespace:picard_bManageHospital"
         Title="loginView" Height="500" Width="500">
     <Window.Resources>
+        <Style x:Key="StyleMainGrid">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CloseSignal}" Value="true">
+                    <Setter Property="Behaviours:WindowCloseBehaviour.Close" Value="true"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="TextBox">
             <Setter Property="TextBox.Padding" Value="5"/>
             <Setter Property="TextBox.Width" Value="130"/>
@@ -13,14 +21,15 @@
         </Style>
     </Window.Resources>
 
-     <Grid Width="150" Height="200">
+    <Grid Width="150" Height="250" Style="{StaticResource StyleMainGrid}">
         <StackPanel>
             <Label Content="ManageHospital" HorizontalAlignment="Center"/>
+            <Label x:Name="errorBox" Content="" HorizontalAlignment="Center"/>
             <Label Content="Identifiant" />
-            <TextBox x:Name="loginBox"  />
+            <TextBox x:Name="loginBox" Text="{Binding Login, Mode=TwoWay}" />
             <Label Content="Password" />
-            <PasswordBox x:Name="passwordBox"/>
-            <Button Content="Valider" Width="70" Margin="20" Command="{Binding LoginCommand}"/>
+            <TextBox x:Name="passwordBox" Text="{Binding Password, Mode=TwoWay}"/>
+            <Button Content="Valider" Width="70" Margin="20" Command="{Binding LoginCommand}" />
         </StackPanel>
     </Grid>
 </Window>
