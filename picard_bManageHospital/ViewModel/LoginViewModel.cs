@@ -59,8 +59,8 @@ namespace picard_bManageHospital.ViewModel
         {
             if (_userData.Connect(Login, Password))
             {
-                View.AllPersonView window = new View.AllPersonView();
-                ViewModel.AllPersonView vm = new AllPersonView();
+                View.AllPatientView window = new View.AllPatientView();
+                ViewModel.AllPatientView vm = new AllPatientView();
                 window.DataContext = vm;
                 window.Show();
                 CloseSignal = true;
