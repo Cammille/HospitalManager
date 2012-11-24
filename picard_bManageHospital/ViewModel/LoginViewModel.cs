@@ -8,15 +8,61 @@ using System.ComponentModel;
 
 namespace picard_bManageHospital.ViewModel
 {
-    class LoginViewModel : INotifyPropertyChanged
+    class LoginViewModel : BaseViewModel
     {
-        public string Login { get; set; }
-        public string Password { get; set; }
-        private DataAccess.User _userData;
-        public ICommand LoginCommand { get; set; }
-        private bool _closeSignal;
-        public event PropertyChangedEventHandler PropertyChanged;
+        #region variables
 
+        private DataAccess.User _dataAccessUser;
+        private bool _closeSignal;
+        private string _login;
+        private string _password;
+
+        #endregion
+
+        #region commands
+
+        private ICommand _loginCommand;
+
+        #endregion
+
+        #region getter / setter
+
+        /// <summary>
+        /// mot de passe de la personne
+        /// </summary>
+        public string Password
+        {
+            get { return _password; }
+            set
+            {
+                if (_password != value)
+                {
+                    _password = value;
+                    OnPropertyChanged("Password");
+                }
+            }
+        }
+
+        /// <summary>
+        /// login de la personne
+        /// </summary>
+        public string Login
+        {
+            get { return _login; }
+            set
+            {
+                if (_login != value)
+                {
+                    _login = value;
+                    OnPropertyChanged("Login");
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// indique si on doit fermer la fenêtre ou non
+        /// </summary>
         public bool CloseSignal
         {
             get { return _closeSignal; }
@@ -30,25 +76,25 @@ namespace picard_bManageHospital.ViewModel
             }
         }
 
-        private void OnPropertyChanged(string property)
+        /// <summary>
+        /// command pour s'authentifier
+        /// </summary>
+        public ICommand LoginCommand
         {
-
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                var e = new PropertyChangedEventArgs(property);
-                handler(this, e);
-            }
+            get { return _loginCommand; }
+            set { _loginCommand = value; }
         }
+
+        #endregion
 
         /// <summary>
         /// Constructeur
         /// </summary>
         public LoginViewModel()
         {
-            Login = "";
-            Password = "";
-            _userData = new DataAccess.User();
+            _login = "";
+            _password = "";
+            _dataAccessUser = new DataAccess.User();
 
             LoginCommand = new RelayCommand(param => Connect(), param => true);
         }
@@ -57,7 +103,7 @@ namespace picard_bManageHospital.ViewModel
         /// </summary>
         private void Connect()
         {
-            if (_userData.Connect(Login, Password))
+            if (_dataAccessUser.Connect(Login, Password))
             {
                 View.AllPatientView window = new View.AllPatientView();
                 ViewModel.AllPatientView vm = new AllPatientView();

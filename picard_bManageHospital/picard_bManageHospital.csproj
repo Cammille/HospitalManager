@@ -82,6 +82,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AllPatientView.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="View\AllPatientView.xaml.cs">
       <DependentUpon>AllPatientView.xaml</DependentUpon>
