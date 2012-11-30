@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="DataAccess\Patient.cs" />
     <Compile Include="DataAccess\User.cs" />
+    <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Service References\ServiceLive\Reference.cs">
