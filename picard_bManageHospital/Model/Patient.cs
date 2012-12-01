@@ -5,8 +5,7 @@ using System.Text;
 
 namespace picard_bManageHospital.Model
 {
-    class Patient
+    class Patient : ServicePatient.Patient
     {
-
     }
 }

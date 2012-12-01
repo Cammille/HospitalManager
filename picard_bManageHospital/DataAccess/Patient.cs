@@ -10,18 +10,24 @@ namespace picard_bManageHospital.DataAccess
     {
         public List<Model.Patient> GetListPatient()
         {
+            List<Model.Patient> listPatient = new List<Model.Patient>();
             try
             {
-                //return new ServicePatient.ServicePatientClient().GetListPatient().ToList();
-                return null;
+                ServicePatient.Patient[] serviceListPatient = new ServicePatient.ServicePatientClient().GetListPatient();
+                foreach (ServicePatient.Patient servicePatient in serviceListPatient)
+                {
+                    Debug.WriteLine(servicePatient.Name);
+                    Model.Patient p = (Model.Patient)servicePatient;
+                    listPatient.Add(p);
+                }
 
             }
             catch (Exception ex)
             {
                 //traitement exception ...
                 Debug.WriteLine(ex.Message);
-                return null;
             }
+            return listPatient;
         }
     }
 }

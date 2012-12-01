@@ -14,7 +14,7 @@ namespace picard_bManageHospital.ViewModel
         private bool _closeSignal;
         private ObservableCollection<Model.Patient> _listPatient = null;
         public event PropertyChangedEventHandler PropertyChanged;
-        private DataAccess.Patient _dbPatient;
+        private DataAccess.Patient _dbPatient = new DataAccess.Patient();
 
         public bool CloseSignal
         {
@@ -62,7 +62,7 @@ namespace picard_bManageHospital.ViewModel
         /// </summary>
         public AllPatientView()
         {
-            //FillListPatient();
+            FillListPatient();
 
             DeconnexionCommand = new RelayCommand(param => Deconnexion(), param => true);
         }
