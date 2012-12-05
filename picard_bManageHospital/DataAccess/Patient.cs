@@ -17,7 +17,7 @@ namespace picard_bManageHospital.DataAccess
                 foreach (ServicePatient.Patient servicePatient in serviceListPatient)
                 {
                     Debug.WriteLine(servicePatient.Name);
-                    Model.Patient p = (Model.Patient)servicePatient;
+                    Model.Patient p = new Model.Patient(servicePatient);
                     listPatient.Add(p);
                 }
                 

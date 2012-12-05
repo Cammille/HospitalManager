@@ -31,7 +31,7 @@
             <Button Content="Déconnexion" Width="100" HorizontalAlignment="Right" Command="{Binding DeconnexionCommand}" />
         </StackPanel>
         <DockPanel Grid.Column="0" Grid.Row="1">
-            <ListBox DockPanel.Dock="Left" x:Name="listPatient" ItemsSource="{Binding}" ItemTemplate="{StaticResource templateList}"/>
+            <ListBox DockPanel.Dock="Left" ItemsSource="{Binding ListPatient}" ItemTemplate="{StaticResource templateList}"/>
         </DockPanel>
     </Grid>
 </Window>
