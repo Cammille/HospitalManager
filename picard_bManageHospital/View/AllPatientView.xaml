@@ -7,12 +7,8 @@
     <Window.Resources>
         <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter"/>
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter"/>
-        <DataTemplate x:Key="PatientObservations">
-            <StackPanel Orientation="Horizontal">
+        <DataTemplate x:Key="ObervationList">
                 <TextBlock Text="{Binding Path=Prescription}"/>
-                <TextBlock Text=" "/>
-                <TextBlock Text="{Binding Path=Weight}"/>
-            </StackPanel>
         </DataTemplate>
         <Style x:Key="StyleMainGrid">
             <Style.Triggers>
@@ -42,7 +38,7 @@
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate >
-                        <ComboBox ItemsSource="{Binding Observations}"  />
+                        <ComboBox ItemsSource="{Binding Observations}" ItemTemplate="ObservationsList"  />
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
             </DataGrid>
