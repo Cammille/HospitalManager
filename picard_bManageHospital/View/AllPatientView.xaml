@@ -7,9 +7,6 @@
     <Window.Resources>
         <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter"/>
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter"/>
-        <DataTemplate x:Key="ObervationList">
-                <TextBlock Text="{Binding Path=Prescription}"/>
-        </DataTemplate>
         <Style x:Key="StyleMainGrid">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding CloseSignal}" Value="true">
@@ -17,6 +14,12 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <DataTemplate x:Key="Obs">
+            <StackPanel DataContext="{Binding Observations}">
+                <TextBlock Text="{Binding Path=Weight}"/>
+                <TextBlock Text="{Binding Path=Date}"/>                
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid  Style="{StaticResource StyleMainGrid}">
@@ -37,8 +40,9 @@
                     <DataGridTextColumn Header="Date de naissance" Binding="{Binding Birthday, Converter={StaticResource DateToFormattedDateConverter}}" />
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
-                    <DataTemplate >
-                        <ComboBox ItemsSource="{Binding Observations}" ItemTemplate="ObservationsList"  />
+                    <DataTemplate>
+                        <ComboBox ItemsSource="{Binding Observations}" SelectedValue="{Binding Path=Weight}"/>
+
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
             </DataGrid>
