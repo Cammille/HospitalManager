@@ -20,7 +20,7 @@ namespace picard_bManageHospital.DataAccess
                     Model.Patient p = (Model.Patient)servicePatient;
                     listPatient.Add(p);
                 }
-
+                
             }
             catch (Exception ex)
             {
