@@ -6,7 +6,7 @@ using System.Text;
 namespace picard_bManageHospital.Model
 {
     class Patient : ServicePatient.Patient
-    {
+    {        
         public Patient(ServicePatient.Patient servicePatient)
         {
             this.Id = servicePatient.Id;

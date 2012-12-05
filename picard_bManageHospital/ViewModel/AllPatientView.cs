@@ -63,9 +63,11 @@ namespace picard_bManageHospital.ViewModel
         public AllPatientView()
         {
             FillListPatient();
+            DisplayAuthenticatedUser();
 
             DeconnexionCommand = new RelayCommand(param => Deconnexion(), param => true);
         }
+
         /// <summary>
         /// Deconnexion
         /// </summary>
@@ -77,7 +79,15 @@ namespace picard_bManageHospital.ViewModel
             window.Show();
             CloseSignal = true;
         }
-        
+
+        /// <summary>
+        /// Display authentificated user
+        /// </summary>
+        private void DisplayAuthenticatedUser()
+        {
+
+        }
+
         /// <summary>
         /// Fill patient list
         /// </summary>

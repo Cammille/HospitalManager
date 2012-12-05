@@ -57,8 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\DateToFormattedDateConverter.cs" />
+    <Compile Include="Converter\FirstLetterUpperCaseConverter.cs" />
     <Compile Include="DataAccess\Patient.cs" />
     <Compile Include="DataAccess\User.cs" />
+    <Compile Include="Model\Observations.cs" />
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="RelayCommand.cs" />

@@ -26,7 +26,7 @@
             <Label Content="ManageHospital" HorizontalAlignment="Center"/>
             <Label x:Name="errorBox" Content="" HorizontalAlignment="Center"/>
             <Label Content="Identifiant" />
-            <TextBox x:Name="loginBox" Text="{Binding Login, Mode=TwoWay}" />
+            <TextBox x:Name="loginBox" Text="{Binding Login, Mode=TwoWay}"/>
             <Label Content="Password" />
             <TextBox x:Name="passwordBox" Text="{Binding Password, Mode=TwoWay}"/>
             <Button Content="Valider" Width="70" Margin="20" Command="{Binding LoginCommand}" />

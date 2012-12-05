@@ -1,12 +1,17 @@
 ﻿<Window x:Class="picard_bManageHospital.View.AllPatientView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AllPatientView" Height="300" Width="300"
-        xmlns:Behaviours="clr-namespace:picard_bManageHospital">
+        Title="AllPatientView" Height="600" Width="600"
+        xmlns:Behaviours="clr-namespace:picard_bManageHospital"
+        xmlns:converter="clr-namespace:picard_bManageHospital.Converter">
     <Window.Resources>
-        <DataTemplate x:Key="templateList">
+        <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter"/>
+        <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter"/>
+        <DataTemplate x:Key="PatientObservations">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Path=Name}" Margin="10px"/>
+                <TextBlock Text="{Binding Path=Prescription}"/>
+                <TextBlock Text=" "/>
+                <TextBlock Text="{Binding Path=Weight}"/>
             </StackPanel>
         </DataTemplate>
         <Style x:Key="StyleMainGrid">
@@ -23,15 +28,24 @@
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.9*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
-            <ColumnDefinition Width="0.7*"/>            
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="1" Grid.Row="0">
+        <StackPanel Grid.Row="0">
             <Button Content="Déconnexion" Width="100" HorizontalAlignment="Right" Command="{Binding DeconnexionCommand}" />
         </StackPanel>
-        <DockPanel Grid.Column="0" Grid.Row="1">
-            <ListBox DockPanel.Dock="Left" ItemsSource="{Binding ListPatient}" ItemTemplate="{StaticResource templateList}"/>
+        <DockPanel Grid.Row="1">
+            <DataGrid ItemsSource="{Binding ListPatient}" AutoGenerateColumns="False" CanUserReorderColumns="True" 
+                      CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" SelectionUnit="FullRow"
+                      AlternatingRowBackground="Beige" AlternationCount="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
+                    <DataGridTextColumn Header="First Name" Binding="{Binding Firstname, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
+                    <DataGridTextColumn Header="Date de naissance" Binding="{Binding Birthday, Converter={StaticResource DateToFormattedDateConverter}}" />
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate >
+                        <ComboBox ItemsSource="{Binding Observations}"  />
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
         </DockPanel>
     </Grid>
 </Window>
