@@ -9,17 +9,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace picard_bManageHospital.View
 {
     /// <summary>
-    /// Interaction logic for Connect.xaml
+    /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class Connect : Page
+    public partial class HomeView : Window
     {
-        public Connect()
+        public HomeView()
         {
             InitializeComponent();
         }

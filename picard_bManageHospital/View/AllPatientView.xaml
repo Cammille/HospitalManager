@@ -1,36 +1,22 @@
-﻿<Window x:Class="picard_bManageHospital.View.AllPatientView"
+﻿<UserControl x:Class="picard_bManageHospital.View.AllPatientView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AllPatientView" Height="600" Width="600"
-        xmlns:Behaviours="clr-namespace:picard_bManageHospital"
+        Height="600" Width="600"
         xmlns:converter="clr-namespace:picard_bManageHospital.Converter">
-    <Window.Resources>
+    <UserControl.Resources>
         <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter"/>
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter"/>
-        <Style x:Key="StyleMainGrid">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding CloseSignal}" Value="true">
-                    <Setter Property="Behaviours:WindowCloseBehaviour.Close" Value="true"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
+
         <DataTemplate x:Key="Obs">
             <StackPanel DataContext="{Binding Observations}">
                 <TextBlock Text="{Binding Path=Weight}"/>
-                <TextBlock Text="{Binding Path=Date}"/>                
+                <TextBlock Text="{Binding Path=Date}"/>
             </StackPanel>
         </DataTemplate>
-    </Window.Resources>
+    </UserControl.Resources>
 
-    <Grid  Style="{StaticResource StyleMainGrid}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"/>
-            <RowDefinition Height="0.9*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
-            <Button Content="Déconnexion" Width="100" HorizontalAlignment="Right" Command="{Binding DeconnexionCommand}" />
-        </StackPanel>
-        <DockPanel Grid.Row="1">
+    <Grid>
+        <DockPanel>
             <DataGrid ItemsSource="{Binding ListPatient}" AutoGenerateColumns="False" CanUserReorderColumns="True" 
                       CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" SelectionUnit="FullRow"
                       AlternatingRowBackground="Beige" AlternationCount="2">
@@ -48,4 +34,4 @@
             </DataGrid>
         </DockPanel>
     </Grid>
-</Window>
+</UserControl>
