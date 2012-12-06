@@ -35,6 +35,7 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Margin="10">
+                <Image Source="{Binding User.Picture}" Width="50" />
                 <Label Content="Bonjour,"
                        HorizontalAlignment="Right" />
                 <TextBlock Margin="0,5">

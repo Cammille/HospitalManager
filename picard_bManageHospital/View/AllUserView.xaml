@@ -17,7 +17,7 @@
     <Grid>
         <DockPanel>
             <DataGrid ItemsSource="{Binding ListUser}"
-                      AutoGenerateColumns="True"
+                      AutoGenerateColumns="False"
                       CanUserReorderColumns="True"
                       CanUserResizeColumns="True"
                       CanUserResizeRows="False"
@@ -26,12 +26,24 @@
                       AlternatingRowBackground="Beige"
                       AlternationCount="2">
                 <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Photo">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Picture}" Width="30"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                    <DataGridTextColumn Header="Identifiant"
+                                        Binding="{Binding Login}" />
                     <DataGridTextColumn Header="Name"
                                         Binding="{Binding Name, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
                     <DataGridTextColumn Header="First Name"
                                         Binding="{Binding Firstname, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
-                    <DataGridTextColumn Header="Date de naissance"
-                                        Binding="{Binding Birthday, Converter={StaticResource DateToFormattedDateConverter}}" />
+                    <DataGridTextColumn Header="Role"
+                                        Binding="{Binding Role, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
+                    <DataGridCheckBoxColumn Header="Connecté"
+                                            Binding="{Binding Connected}" IsReadOnly="True"/>
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
