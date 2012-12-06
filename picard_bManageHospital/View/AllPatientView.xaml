@@ -2,11 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Height="600" Width="750"
-        xmlns:converter="clr-namespace:picard_bManageHospital.Converter">
+        xmlns:converter="clr-namespace:picard_bManageHospital.Converter"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit">
     <UserControl.Resources>
         <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter"/>
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter"/>
-
+        
         <DataTemplate x:Key="Obs">
             <StackPanel DataContext="{Binding Observations}">
                 <TextBlock Text="{Binding Path=Weight}"/>
@@ -28,12 +29,22 @@
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <ComboBox ItemsSource="{Binding Observations}"
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Consultation du :"/>
+                                <ComboBox ItemsSource="{Binding Observations}"
                                 DisplayMemberPath="Date" Width="150"
                                       HorizontalAlignment="Left"
                                       x:Name="obs"/>
-                            <TextBlock Text="{Binding Comment}" DataContext="{Binding Observations}"/>
-                            <TextBlock Text="{Binding Weight}" DataContext="{Binding Observations}"/>
+                                <TextBlock Text="{Binding Comment}" DataContext="{Binding Observations}" MaxWidth="300"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <chartingToolkit:Chart Title="Courbe de poids" Name="chartWeight" Width="320" Height="200">
+                                    <chartingToolkit:LineSeries ItemsSource="{Binding Observations}" DependentValueBinding="{Binding Path=Weight}" IndependentValueBinding="{Binding Path=Date}" AnimationSequence="FirstToLast"/>
+                                </chartingToolkit:Chart>
+                                <chartingToolkit:Chart Title="Courbe de pression" Name="chartPressure" Width="320" Height="200">
+                                    <chartingToolkit:LineSeries ItemsSource="{Binding Observations}" DependentValueBinding="{Binding Path=BloodPressure}" IndependentValueBinding="{Binding Path=Date}"/>
+                                </chartingToolkit:Chart>
+                            </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
