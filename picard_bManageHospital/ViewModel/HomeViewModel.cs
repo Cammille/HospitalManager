@@ -11,28 +11,26 @@ namespace picard_bManageHospital.ViewModel
 
         #region variables
 
-        public ICommand DisconnectCommand { get; set; }
         private bool _closeSignal;
-        private ViewModel.AllPatientViewModel _allPatientVM;
-
+        private ViewModel.BaseViewModel _currentViewModel;
+        private ServiceUser.User _user;
+        
         #endregion
 
         #region getter / setter
 
-        public ViewModel.AllPatientViewModel AllPatientVM
+        public ViewModel.BaseViewModel CurrentViewModel
         {
-            get { return _allPatientVM; }
+            get { return _currentViewModel; }
             set
             {
-                if (_allPatientVM != value)
+                if (_currentViewModel != value)
                 {
-                    _allPatientVM = value;
-                    OnPropertyChanged("AllPatientVM");
+                    _currentViewModel = value;
+                    OnPropertyChanged("CurrentViewModel");
                 }
             }
         }
-
-        #endregion
 
         public bool CloseSignal
         {
@@ -47,14 +45,39 @@ namespace picard_bManageHospital.ViewModel
             }
         }
 
+        public ServiceUser.User User
+        {
+            get { return _user; }
+            set
+            {
+                if (_user != value)
+                {
+                    _user = value;
+                    OnPropertyChanged("User");
+                }
+            }
+        }
+
+        #endregion
+
+        #region commands
+
+        public ICommand UserProfileCommand { get; set; }
+        public ICommand DisconnectCommand { get; set; }
+
+        #endregion
+
         /// <summary>
         /// Constructeur
         /// </summary>
         public HomeViewModel()
         {
+            // Set-up commands
             DisconnectCommand = new RelayCommand(param => Disconnect(), param => true);
+            UserProfileCommand = new RelayCommand(param => UserProfile(), param => true);
 
-            AllPatientVM = new AllPatientViewModel();
+            // Loading default viewmodel
+            CurrentViewModel = new AllPatientViewModel();
         }
 
         /// <summary>
@@ -67,6 +90,14 @@ namespace picard_bManageHospital.ViewModel
             window.DataContext = vm;
             window.Show();
             CloseSignal = true;
+        }
+
+        /// <summary>
+        /// Ouverture du profil
+        /// </summary>
+        private void UserProfile()
+        {
+            CurrentViewModel = new UserViewModel(User);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace picard_bManageHospital.ViewModel
     {
         #region variables
 
-        private ObservableCollection<Model.Patient> _listPatient = null;
+        private ObservableCollection<ServicePatient.Patient> _listPatient = null;
         private DataAccess.Patient _dbPatient = new DataAccess.Patient();
 
         #endregion
@@ -22,7 +22,7 @@ namespace picard_bManageHospital.ViewModel
         /// <summary>
         /// Liste des patients
         /// </summary>
-        public ObservableCollection<Model.Patient> ListPatient
+        public ObservableCollection<ServicePatient.Patient> ListPatient
         {
             get { return _listPatient; }
             set
@@ -51,10 +51,8 @@ namespace picard_bManageHospital.ViewModel
         /// </summary>
         private void FillListPatient()
         {
-            List<Model.Patient> tmpList = _dbPatient.GetListPatient();
-
-            //transformation en Observable collection pour l'interface
-            ListPatient = new ObservableCollection<Model.Patient>(tmpList);
+            // Transformation en Observable collection pour l'interface
+            ListPatient = new ObservableCollection<ServicePatient.Patient>(_dbPatient.GetListPatient());
         }
     }
 }

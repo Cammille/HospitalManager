@@ -8,25 +8,19 @@ namespace picard_bManageHospital.DataAccess
 {
     class Patient
     {
-        public List<Model.Patient> GetListPatient()
+        public List<ServicePatient.Patient> GetListPatient()
         {
-            List<Model.Patient> listPatient = new List<Model.Patient>();
+            List<ServicePatient.Patient> serviceListPatient = new List<ServicePatient.Patient>();
             try
             {
-                ServicePatient.Patient[] serviceListPatient = new ServicePatient.ServicePatientClient().GetListPatient();
-                foreach (ServicePatient.Patient servicePatient in serviceListPatient)
-                {
-                    Model.Patient p = new Model.Patient(servicePatient);
-                    listPatient.Add(p);
-                }
-                
+                serviceListPatient = new ServicePatient.ServicePatientClient().GetListPatient().ToList();
             }
             catch (Exception ex)
             {
                 //traitement exception ...
                 Debug.WriteLine(ex.Message);
             }
-            return listPatient;
+            return serviceListPatient;
         }
     }
 }

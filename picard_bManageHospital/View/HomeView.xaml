@@ -2,29 +2,50 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Views="clr-namespace:picard_bManageHospital.View"
+        xmlns:ViewModels="clr-namespace:picard_bManageHospital.ViewModel"
         xmlns:Behaviours="clr-namespace:picard_bManageHospital"
-        Title="Gestionnaire" Height="768" Width="800">
-    
+        Title="Gestionnaire"
+        Height="768"
+        Width="1024">
+
     <Window.Resources>
-        <DataTemplate x:Key="AllPatientView">
+        <DataTemplate  DataType="{x:Type ViewModels:AllPatientViewModel}">
             <Views:AllPatientView />
         </DataTemplate>
-        
+        <DataTemplate DataType="{x:Type ViewModels:UserViewModel}">
+            <Views:UserView />
+        </DataTemplate>
+
         <Style x:Key="StyleMainGrid">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding CloseSignal}" Value="true">
-                    <Setter Property="Behaviours:WindowCloseBehaviour.Close" Value="true"/>
+                <DataTrigger Binding="{Binding CloseSignal}"
+                             Value="true">
+                    <Setter Property="Behaviours:WindowCloseBehaviour.Close"
+                            Value="true" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
 
     <Grid Style="{StaticResource StyleMainGrid}">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="10">
+                <Label Content="Bonjour,"
+                       HorizontalAlignment="Right" />
+                <Label Content="{Binding User.Login}"
+                       Name="login"
+                       Margin="0,0,10,0" />
+                <Button Content="Profil"
+                        Width="100"
+                        Command="{Binding UserProfileCommand}" />
+                <Button Content="Déconnexion"
+                        Width="100"
+                        Command="{Binding DisconnectCommand}" />
+            </StackPanel>
 
-        <StackPanel Grid.Row="0">
-            <Button Content="Déconnexion" Width="100" HorizontalAlignment="Right" Command="{Binding DisconnectCommand}" />
+            <ContentControl Content="{Binding CurrentViewModel}" />
         </StackPanel>
-
-        <ContentControl Content="{Binding AllPatientVM}" ContentTemplate="{StaticResource AllPatientView}" />
     </Grid>
 </Window>

@@ -98,6 +98,7 @@ namespace picard_bManageHospital.ViewModel
 
             LoginCommand = new RelayCommand(param => Connect(), param => true);
         }
+
         /// <summary>
         /// Authentification
         /// </summary>
@@ -107,6 +108,7 @@ namespace picard_bManageHospital.ViewModel
             {
                 View.HomeView window = new View.HomeView();
                 ViewModel.HomeViewModel vm = new HomeViewModel();
+                vm.User = _dataAccessUser.GetUser(Login);
                 window.DataContext = vm;
                 window.Show();
                 CloseSignal = true;
