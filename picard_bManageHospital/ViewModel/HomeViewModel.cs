@@ -64,6 +64,8 @@ namespace picard_bManageHospital.ViewModel
 
         public ICommand UserProfileCommand { get; set; }
         public ICommand DisconnectCommand { get; set; }
+        public ICommand AllPatientCommand { get; set; }
+        public ICommand AllUserCommand { get; set; }
 
         #endregion
 
@@ -75,6 +77,8 @@ namespace picard_bManageHospital.ViewModel
             // Set-up commands
             DisconnectCommand = new RelayCommand(param => Disconnect(), param => true);
             UserProfileCommand = new RelayCommand(param => UserProfile(), param => true);
+            AllPatientCommand = new RelayCommand(param => AllPatient(), param => true);
+            AllUserCommand = new RelayCommand(param => AllUser(), param => true);
 
             // Loading default viewmodel
             CurrentViewModel = new AllPatientViewModel();
@@ -98,6 +102,22 @@ namespace picard_bManageHospital.ViewModel
         private void UserProfile()
         {
             CurrentViewModel = new UserViewModel(User);
+        }
+
+        /// <summary>
+        /// Gestion patients
+        /// </summary>
+        private void AllPatient()
+        {
+            CurrentViewModel = new AllPatientViewModel();
+        }
+
+        /// <summary>
+        /// Gestion utilisateurs
+        /// </summary>
+        private void AllUser()
+        {
+            CurrentViewModel = new AllUserViewModel();
         }
     }
 }

@@ -63,7 +63,6 @@
     <Compile Include="DataAccess\User.cs" />
     <Compile Include="Model\Observations.cs" />
     <Compile Include="Model\Patient.cs" />
-    <Compile Include="Model\User.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Service References\ServiceLive\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -86,12 +85,16 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AllPatientViewModel.cs" />
+    <Compile Include="ViewModel\AllUserViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="View\AllPatientView.xaml.cs">
       <DependentUpon>AllPatientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AllUserView.xaml.cs">
+      <DependentUpon>AllUserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -116,6 +119,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AllPatientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AllUserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,13 +4,16 @@
         xmlns:Views="clr-namespace:picard_bManageHospital.View"
         xmlns:ViewModels="clr-namespace:picard_bManageHospital.ViewModel"
         xmlns:Behaviours="clr-namespace:picard_bManageHospital"
-        Title="Gestionnaire"
+        Title="ManageHospital"
         Height="768"
         Width="1024">
 
     <Window.Resources>
         <DataTemplate  DataType="{x:Type ViewModels:AllPatientViewModel}">
             <Views:AllPatientView />
+        </DataTemplate>
+        <DataTemplate  DataType="{x:Type ViewModels:AllUserViewModel}">
+            <Views:AllUserView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type ViewModels:UserViewModel}">
             <Views:UserView />
@@ -34,17 +37,24 @@
                         Margin="10">
                 <Label Content="Bonjour,"
                        HorizontalAlignment="Right" />
-                <Label Content="{Binding User.Login}"
-                       Name="login"
-                       Margin="0,0,10,0" />
-                <Button Content="Profil"
-                        Width="100"
-                        Command="{Binding UserProfileCommand}" />
+                <TextBlock Margin="0,5">
+                    <Hyperlink Command="{Binding UserProfileCommand}">
+                        <TextBlock Text="{Binding User.Login}"/>
+                    </Hyperlink>
+                </TextBlock>
                 <Button Content="Déconnexion"
                         Width="100"
+                        Margin="10,0,0,0"
                         Command="{Binding DisconnectCommand}" />
             </StackPanel>
-
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Patients"
+                        Width="100"
+                        Command="{Binding AllPatientCommand}" />
+                <Button Content="Utilisateurs"
+                        Width="100"
+                        Command="{Binding AllUserCommand}" />
+            </StackPanel>
             <ContentControl Content="{Binding CurrentViewModel}" />
         </StackPanel>
     </Grid>
