@@ -61,7 +61,6 @@
     <Compile Include="Converter\FirstLetterUpperCaseConverter.cs" />
     <Compile Include="DataAccess\Patient.cs" />
     <Compile Include="DataAccess\User.cs" />
-    <Compile Include="Model\Observations.cs" />
     <Compile Include="Model\Patient.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Service References\ServiceLive\Reference.cs">

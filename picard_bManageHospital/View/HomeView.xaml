@@ -4,11 +4,14 @@
         xmlns:Views="clr-namespace:picard_bManageHospital.View"
         xmlns:ViewModels="clr-namespace:picard_bManageHospital.ViewModel"
         xmlns:Behaviours="clr-namespace:picard_bManageHospital"
+        xmlns:converter="clr-namespace:picard_bManageHospital.Converter"
         Title="ManageHospital"
         Height="768"
         Width="1024">
 
     <Window.Resources>
+        <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter"/>
+        
         <DataTemplate  DataType="{x:Type ViewModels:AllPatientViewModel}">
             <Views:AllPatientView />
         </DataTemplate>
@@ -37,14 +40,17 @@
                         Margin="10">
                 <Image Source="{Binding User.Picture}" Width="50" />
                 <Label Content="Bonjour,"
-                       HorizontalAlignment="Right" />
-                <TextBlock Margin="0,5">
-                    <Hyperlink Command="{Binding UserProfileCommand}">
-                        <TextBlock Text="{Binding User.Login}"/>
+                       HorizontalAlignment="Right" 
+                        Height="25"/>
+                <TextBlock Margin="0,5" Height="25">
+                    <Hyperlink Command="{Binding UserProfileCommand}" >
+                        <TextBlock Text="{Binding User.Login, Converter={StaticResource FirstLetterUpperCaseConverter}}" 
+                        Height="25"/>
                     </Hyperlink>
                 </TextBlock>
                 <Button Content="Déconnexion"
                         Width="100"
+                        Height="25"
                         Margin="10,0,0,0"
                         Command="{Binding DisconnectCommand}" />
             </StackPanel>

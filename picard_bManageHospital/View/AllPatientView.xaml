@@ -27,8 +27,14 @@
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
-                        <ComboBox ItemsSource="{Binding Observations.Date}" SelectedValue="{Binding Observations.Date}"/>
-
+                        <StackPanel>
+                            <ComboBox ItemsSource="{Binding Observations}"
+                                DisplayMemberPath="Date" Width="150"
+                                      HorizontalAlignment="Left"
+                                      x:Name="obs"/>
+                            <TextBlock Text="{Binding Comment}" DataContext="{Binding Observations}"/>
+                            <TextBlock Text="{Binding Weight}" DataContext="{Binding Observations}"/>
+                        </StackPanel>
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
             </DataGrid>
