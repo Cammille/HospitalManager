@@ -7,12 +7,9 @@
     <UserControl.Resources>
         <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter"/>
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter"/>
-        
-        <DataTemplate x:Key="Obs">
-            <StackPanel DataContext="{Binding Observations}">
-                <TextBlock Text="{Binding Path=Weight}"/>
-                <TextBlock Text="{Binding Path=Date}"/>
-            </StackPanel>
+
+        <DataTemplate x:Key="pict">
+                <Image Source="{Binding Path=Pictures}"/>
         </DataTemplate>
     </UserControl.Resources>
 
@@ -29,19 +26,30 @@
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
                                 <Label Content="Consultation du :"/>
                                 <ComboBox ItemsSource="{Binding Observations}"
+                                          SelectedItem="{Binding Observations}"
                                 DisplayMemberPath="Date" Width="150"
                                       HorizontalAlignment="Left"
                                       x:Name="obs"/>
-                                <TextBlock Text="{Binding Comment}" DataContext="{Binding Observations}" MaxWidth="300"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Commentaire"/>
+                                    <TextBlock Text="{Binding Comment}" DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Prescription"/>
+                                    <ListView ItemsSource="{Binding Prescription}" DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <ListView DataContext="{Binding ElementName=obs, Path=SelectedItem}" ItemTemplate="{Binding pict}" />
+                                </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <chartingToolkit:Chart Title="Courbe de poids" Name="chartWeight" Width="320" Height="200">
+                                <chartingToolkit:Chart Title="Courbe de poids" Name="chartWeight" Width="340" Height="200">
                                     <chartingToolkit:LineSeries ItemsSource="{Binding Observations}" DependentValueBinding="{Binding Path=Weight}" IndependentValueBinding="{Binding Path=Date}" AnimationSequence="FirstToLast"/>
                                 </chartingToolkit:Chart>
-                                <chartingToolkit:Chart Title="Courbe de pression" Name="chartPressure" Width="320" Height="200">
+                                <chartingToolkit:Chart Title="Courbe de pression" Name="chartPressure" Width="340" Height="200">
                                     <chartingToolkit:LineSeries ItemsSource="{Binding Observations}" DependentValueBinding="{Binding Path=BloodPressure}" IndependentValueBinding="{Binding Path=Date}"/>
                                 </chartingToolkit:Chart>
                             </StackPanel>
