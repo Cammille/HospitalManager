@@ -62,7 +62,9 @@
                         Width="100"
                         Command="{Binding AllUserCommand}" />
             </StackPanel>
-            <ContentControl Content="{Binding CurrentViewModel}" />
+            
+            <ContentControl Content="{Binding CurrentViewModel}"
+                            VerticalAlignment="Top" />
         </StackPanel>
     </Grid>
 </Window>

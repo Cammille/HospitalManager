@@ -7,11 +7,9 @@
              mc:Ignorable="d"
              Height="Auto"
              Width="Auto">
+
     <UserControl.Resources>
-
-        <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter" />
-        <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter" />
-
+        <converter:BrushColorConverter x:Key="boolConverter" />
         <Style TargetType="{x:Type ListBox}">
             <Setter Property="ItemTemplate">
                 <Setter.Value>
@@ -19,27 +17,82 @@
                         <Border BorderBrush="Black"
                                 BorderThickness="1"
                                 CornerRadius="5"
-                                Margin="10">
+                                Margin="8">
                             <StackPanel>
                                 <StackPanel x:Name="spDetail"
                                             Visibility="Collapsed"
-                                            MinWidth="100"
-                                            MinHeight="130">
-                                    <TextBlock Text="{Binding Login}" />
+                                            MinWidth="200"
+                                            MinHeight="260">
+                                    <StackPanel.Background>
+                                        <LinearGradientBrush EndPoint="1,0.5"
+                                                             StartPoint="0,0.5">
+                                            <GradientStop Color="White"
+                                                          Offset="0.754" />
+                                            <GradientStop Color="White"
+                                                          Offset="1" />
+                                            <GradientStop Color="#FF7F7F7F"
+                                                          Offset="0.877" />
+                                        </LinearGradientBrush>
+                                    </StackPanel.Background>
+                                    <TextBlock Margin="10,20,10,5">Login</TextBlock>
+                                    <TextBox  Text="{Binding Login}"
+                                              Margin="10,0"
+                                              IsEnabled="False"></TextBox>
+
+                                    <TextBlock Margin="10,8,10,5">Nom</TextBlock>
+                                    <TextBox Text="{Binding Name}"
+                                             Margin="10,0"
+                                             IsEnabled="False"></TextBox>
+
+                                    <TextBlock Margin="10,8,10,5">Prenom</TextBlock>
+                                    <TextBox Text="{Binding Firstname}"
+                                             Margin="10,0"
+                                             IsEnabled="False"></TextBox>
+
+                                    <TextBlock Margin="10,8,10,5">Role</TextBlock>
+                                    <TextBox Text="{Binding Role}"
+                                             Margin="10,0"
+                                             IsEnabled="False"></TextBox>
                                 </StackPanel>
                                 <StackPanel x:Name="sp"
-                                            MinWidth="100"
-                                            MinHeight="130">
+                                            MinWidth="200"
+                                            MinHeight="260">
+                                    <StackPanel.Background>
+                                        <LinearGradientBrush EndPoint="1,0.5"
+                                                             StartPoint="0,0.5">
+                                            <GradientStop Color="White"
+                                                          Offset="0.754" />
+                                            <GradientStop Color="White"
+                                                          Offset="1" />
+                                            <GradientStop Color="#FF7F7F7F"
+                                                          Offset="0.877" />
+                                        </LinearGradientBrush>
+                                    </StackPanel.Background>
                                     <StackPanel.RenderTransform>
                                         <ScaleTransform x:Name="userItem"
                                                         ScaleX="1" />
                                     </StackPanel.RenderTransform>
                                     <Image Source="{Binding Picture}"
                                            Stretch="Fill"
-                                           Width="100"
-                                           Height="120" />
-                                    <TextBlock Text="{Binding Login}" />
+                                           Width="200"
+                                           Height="240" />
+                                    <TextBlock Text="{Binding Login}"
+                                               HorizontalAlignment="Center" />
+                                    <Ellipse x:Name="ellipse1"
+                                             Width="10"
+                                             Height="10"
+                                             Stroke="Black"
+                                             Fill="{Binding Connected, Converter={StaticResource boolConverter}}" />
                                 </StackPanel>
+                                <StackPanel.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1"
+                                                         StartPoint="0.5,0">
+                                        <GradientStop Color="Black"
+                                                      Offset="0.61" />
+                                        <GradientStop Color="White"
+                                                      Offset="1" />
+                                    </LinearGradientBrush>
+                                </StackPanel.Background>
                             </StackPanel>
                         </Border>
                         <DataTemplate.Resources>
@@ -107,21 +160,13 @@
                     </ItemsPanelTemplate>
                 </Setter.Value>
             </Setter>
-
-            <!-- Set this attached property to 'Disabled' so that the 
-           ScrollViewer in the ListBox will never show a horizontal 
-           scrollbar, and the WrapPanel it contains will be constrained 
-           to the width of the ScrollViewer's viewable surface. -->
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
                     Value="Disabled" />
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <ListBox x:Name="lolo"
-                 ItemsSource="{Binding ListUser}"
-                 SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
-                 HorizontalAlignment="Stretch"
-                 VerticalAlignment="Stretch" />
+    <ScrollViewer>
+        <ListBox ItemsSource="{Binding ListUser}"
+                 SelectedItem="{Binding SelectedUser, Mode=TwoWay}" />
         <!-- <DataGrid ItemsSource="{Binding ListUser}"
                       AutoGenerateColumns="False"
                       CanUserReorderColumns="True"
@@ -159,5 +204,5 @@
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
             </DataGrid> -->
-    </Grid>
+    </ScrollViewer>
 </UserControl>

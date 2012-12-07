@@ -66,7 +66,7 @@ namespace picard_bManageHospital.ViewModel
         }
 
         /// <summary>
-        /// Fill patient list
+        /// Fill user list
         /// </summary>
         private void FillListUser()
         {
