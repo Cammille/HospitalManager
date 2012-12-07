@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Data;
+using System.Windows.Controls;
 
 namespace picard_bManageHospital.ViewModel
 {
@@ -11,6 +14,7 @@ namespace picard_bManageHospital.ViewModel
         #region variables
 
         private ObservableCollection<ServiceUser.User> _listUser = null;
+        private ServiceUser.User _selectedUser = null;
         private DataAccess.User _dbUser = new DataAccess.User();
 
         #endregion
@@ -18,7 +22,7 @@ namespace picard_bManageHospital.ViewModel
         #region getter / setter
 
         /// <summary>
-        /// Liste des patients
+        /// Liste des utilisateurs
         /// </summary>
         public ObservableCollection<ServiceUser.User> ListUser
         {
@@ -30,6 +34,23 @@ namespace picard_bManageHospital.ViewModel
                 {
                     _listUser = value;
                     OnPropertyChanged("ListUser");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Utilisateur selectionne
+        /// </summary>
+        public ServiceUser.User SelectedUser
+        {
+            get { return _selectedUser; }
+            set
+            {
+
+                if (_selectedUser != value)
+                {
+                    _selectedUser = value;
+                    OnPropertyChanged("SelectedUser");
                 }
             }
         }
