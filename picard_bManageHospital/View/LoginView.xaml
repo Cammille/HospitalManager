@@ -24,7 +24,9 @@
     <Grid Width="150" Height="250" Style="{StaticResource StyleMainGrid}">
         <StackPanel>
             <Label Content="ManageHospital" HorizontalAlignment="Center"/>
-            <Label x:Name="errorBox" Content="" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="errorBox" Text="{Binding Message}" HorizontalAlignment="Center"
+                   Foreground="#FFD81313"
+                   TextWrapping="WrapWithOverflow" />
             <Label Content="Identifiant" />
             <TextBox x:Name="loginBox" Text="{Binding Login, Mode=TwoWay}"/>
             <Label Content="Password" />
@@ -33,7 +35,8 @@
                     Width="70"
                     Margin="20"
                     Command="{Binding LoginCommand}"
-                    CommandParameter="{Binding ElementName=passwordBox}" />
+                    CommandParameter="{Binding ElementName=passwordBox}"
+                    IsEnabled="{Binding CanConnect, Mode=TwoWay}"/>
         </StackPanel>
     </Grid>
 </Window>

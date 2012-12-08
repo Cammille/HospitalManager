@@ -16,7 +16,7 @@ namespace picard_bManageHospital.ViewModel
         private DataAccess.User _dataAccessUser;
         private bool _closeSignal;
         private string _login;
-        private string _password;
+        private string _message;
 
         #endregion
 
@@ -27,22 +27,6 @@ namespace picard_bManageHospital.ViewModel
         #endregion
 
         #region getter / setter
-
-        /// <summary>
-        /// mot de passe de la personne
-        /// </summary>
-        public string Password
-        {
-            get { return _password; }
-            set
-            {
-                if (_password != value)
-                {
-                    _password = value;
-                    OnPropertyChanged("Password");
-                }
-            }
-        }
 
         /// <summary>
         /// login de la personne
@@ -77,6 +61,16 @@ namespace picard_bManageHospital.ViewModel
             }
         }
 
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                OnPropertyChanged("Message");
+            }
+        }
+
         /// <summary>
         /// command pour s'authentifier
         /// </summary>
@@ -93,15 +87,16 @@ namespace picard_bManageHospital.ViewModel
         /// </summary>
         public LoginViewModel()
         {
-            _login = "";
-            _password = "";
             _dataAccessUser = new DataAccess.User();
+
+            Login = "laura";
+            Message = string.Empty;
 
             LoginCommand = new RelayCommand(Connect);
         }
 
         /// <summary>
-        /// Authentification
+        /// Authentification, ne respecte pas MVVM mais ne stocke pas le password en memoire
         /// </summary>
         private void Connect(object parameter)
         {
@@ -115,6 +110,10 @@ namespace picard_bManageHospital.ViewModel
                 window.DataContext = vm;
                 window.Show();
                 CloseSignal = true;
+            }
+            else
+            {
+                Message = "Login/Mot de passe incorrect";
             }
         }
     }
