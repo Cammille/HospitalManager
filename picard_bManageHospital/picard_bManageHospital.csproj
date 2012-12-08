@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="View\NewPatientView.xaml.cs">
       <DependentUpon>NewPatientView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserManagementView.xaml.cs">
       <DependentUpon>UserManagementView.xaml</DependentUpon>
     </Compile>
@@ -158,6 +159,7 @@
     <Page Include="View\NewPatientView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\UserManagementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
