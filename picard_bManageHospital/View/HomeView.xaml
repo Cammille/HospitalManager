@@ -12,6 +12,7 @@
 
     <Window.Resources>
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter" />
+        
 
         <DataTemplate DataType="{x:Type ViewModels:PatientManagementViewModel}">
             <Views:PatientManagementView />
@@ -74,35 +75,56 @@
 
     <DockPanel LastChildFill="True"
                Style="{StaticResource StyleMainGrid}">
-        <StackPanel DockPanel.Dock="Top">
+        <StackPanel DockPanel.Dock="Top" >
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
-                        Margin="10">
+                        VerticalAlignment="Center"
+                        Margin="10"
+                       >
                 <Image Source="{Binding User.Picture}"
                        Width="50" />
-                <Label Content="Bonjour,"
-                       HorizontalAlignment="Right"
-                       Height="25" />
-                <TextBlock Margin="0,5"
-                           Height="25">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Label Content="Bonjour"
+                       HorizontalAlignment="Right" Foreground="#FF547BDA" FontSize="14.667" />
+                    <TextBlock TextAlignment="Center" Foreground="#FF547BDA" FontSize="14.667" FontWeight="Bold">
                     <Hyperlink Command="{Binding UserProfileCommand}">
-                        <TextBlock Text="{Binding User.Login, Converter={StaticResource FirstLetterUpperCaseConverter}}"
-                                   Height="25" />
+                        <TextBlock Text="{Binding User.Login, Converter={StaticResource FirstLetterUpperCaseConverter}}"/>
                     </Hyperlink>
                 </TextBlock>
+                </StackPanel>
                 <Button Content="Déconnexion"
-                        Width="100"
-                        Height="25"
+                        Height="30"
                         Margin="10,0,0,0"
-                        Command="{Binding DisconnectCommand}" />
+                        Command="{Binding DisconnectCommand}"
+                        Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="/picard_bManageHospital;component/Images/logout.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Patients"
                         Width="100"
-                        Command="{Binding AllPatientCommand}" />
+                        Command="{Binding AllPatientCommand}" BorderBrush="#FF418DD4" FontSize="14.667" Foreground="#FF20358B" >
+                	<Button.Background>
+                		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                			<GradientStop Color="#FFCDCDEF" Offset="0"/>
+                			<GradientStop Color="#FF8080CA" Offset="1"/>
+                		</LinearGradientBrush>
+                	</Button.Background>
+                </Button>
                 <Button Content="Utilisateurs"
                         Width="100"
-                        Command="{Binding AllUserCommand}" />
+                        Command="{Binding AllUserCommand}" BorderBrush="#FF418DD4" FontSize="14.667" Foreground="#FF20358B" >
+                	<Button.Background>
+                		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                			<GradientStop Color="#FFCDCDEF" Offset="0"/>
+                			<GradientStop Color="#FF8080CA" Offset="1"/>
+                		</LinearGradientBrush>
+                	</Button.Background>
+                </Button>
             </StackPanel>
             <ContentControl Content="{Binding CurrentViewModel}"
                             VerticalAlignment="Top"

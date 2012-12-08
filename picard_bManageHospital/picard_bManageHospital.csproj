@@ -334,6 +334,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\logout.png" />
+    <Resource Include="Images\logo.png" />
     <Content Include="lib\System.Windows.Controls.DataVisualization.Toolkit.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -23,13 +23,13 @@
 
     <Grid Width="150" Height="250" Style="{StaticResource StyleMainGrid}">
         <StackPanel>
-            <Label Content="ManageHospital" HorizontalAlignment="Center"/>
+            <Image Source="/picard_bManageHospital;component/Images/logo.png" />
             <TextBlock x:Name="errorBox" Text="{Binding Message}" HorizontalAlignment="Center"
                    Foreground="#FFD81313"
                    TextWrapping="WrapWithOverflow" />
-            <Label Content="Identifiant" />
+            <Label Content="Identifiant" Foreground="#FF547BDA" />
             <TextBox x:Name="loginBox" Text="{Binding Login, Mode=TwoWay}"/>
-            <Label Content="Password" />
+            <Label Content="Password" Foreground="#FF547BDA" />
             <PasswordBox x:Name="passwordBox"/>
             <Button Content="Valider"
                     Width="70"
