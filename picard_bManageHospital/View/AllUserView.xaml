@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              MinHeight="350"
              MinWidth="750"
-             MaxHeight="400">
+             MaxHeight="550">
 
     <UserControl.Resources>
         <converter:BrushColorConverter x:Key="boolConverter" />

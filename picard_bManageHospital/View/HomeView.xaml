@@ -30,44 +30,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-
-        <SolidColorBrush x:Key="lightBackground"
-                         Color="#3A7899" />
-
-        <LinearGradientBrush x:Key="darkBackground"
-                             EndPoint="0,1">
-            <LinearGradientBrush.GradientStops>
-                <GradientStop Color="#234B61"
-                              Offset="0" />
-                <GradientStop Color="#234B61"
-                              Offset="1" />
-            </LinearGradientBrush.GradientStops>
-        </LinearGradientBrush>
-
-        <LinearGradientBrush x:Key="background"
-                             EndPoint="0,1">
-            <LinearGradientBrush.GradientStops>
-                <GradientStop Color="#3A7899"
-                              Offset="0" />
-                <GradientStop Color="#164052"
-                              Offset="1" />
-            </LinearGradientBrush.GradientStops>
-        </LinearGradientBrush>
-
-        <LinearGradientBrush x:Key="selBackground"
-                             EndPoint="0,1">
-            <LinearGradientBrush.GradientStops>
-                <GradientStop Color="#dd444444"
-                              Offset="0" />
-                <GradientStop Color="#dd202529"
-                              Offset="1" />
-            </LinearGradientBrush.GradientStops>
-        </LinearGradientBrush>
-
-        <SolidColorBrush x:Key="lightForeground"
-                         Color="#f0f0f0" />
-        <SolidColorBrush x:Key="darkForeground"
-                         Color="#661313" />
     </Window.Resources>
 
     <DockPanel LastChildFill="True"
@@ -127,8 +89,9 @@
                             VerticalAlignment="Top"
                             MinWidth="750"
                             MinHeight="400"
-                            MaxHeight="500" />
+                            MaxHeight="700" />
         </StackPanel>
+        <!--
         <Grid DockPanel.Dock="Bottom"
               VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
@@ -147,18 +110,13 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <!-- Live charts -->
-                    <DynamicDataDisplay:ChartPlotter x:Name="dataGrid_fever"
-                                                     Grid.Column="0"
-                                                     Background="Transparent"
-                                                     Foreground="{StaticResource lightForeground}" />
+                    <DynamicDataDisplay:ChartPlotter x:Name="dataGrid_temp"
+                                                     Grid.Column="0" />
                     <DynamicDataDisplay:ChartPlotter x:Name="dataGrid_heart"
-                                                     Grid.Column="1"
-                                                     Background="Transparent"
-                                                     Foreground="{StaticResource lightForeground}" />
+                                                     Grid.Column="1" />
                 </Grid>
             </Border>
         </Grid>
-
+        -->
     </DockPanel>
 </Window>
