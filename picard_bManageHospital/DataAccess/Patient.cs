@@ -42,5 +42,21 @@ namespace picard_bManageHospital.DataAccess
                 return false;
             }
         }
+
+        public bool DeletePatient(int id)
+        {
+            try
+            {
+                if (new ServicePatient.ServicePatientClient().DeletePatient(id))
+                    return true;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                //traitement exception ...
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
+        }
     }
 }

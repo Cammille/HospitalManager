@@ -5,6 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace picard_bManageHospital.ViewModel
 {
@@ -55,6 +56,7 @@ namespace picard_bManageHospital.ViewModel
         #region commands
 
         private ICommand _addCommand;
+        private ICommand _deleteCommand;
 
         #endregion
 
@@ -65,6 +67,7 @@ namespace picard_bManageHospital.ViewModel
         {
             FillListPatient();
             AddCommand = new RelayCommand(param => Add(), param => true);
+            DeleteCommand = new RelayCommand(Delete);
         }
 
         /// <summary>
@@ -85,9 +88,28 @@ namespace picard_bManageHospital.ViewModel
             set { _addCommand = value; }
         }
 
+        /// <summary>
+        /// command pour suppriemr un patient
+        /// </summary>
+        public ICommand DeleteCommand
+        {
+            get { return _deleteCommand; }
+            set { _deleteCommand = value; }
+        }
+
         private void Add()
         {
             CurrentViewModel = new NewPatientViewModel();
+        }
+
+        /// <summary>
+        /// Supprimer un patient
+        /// </summary>
+        private void Delete(object parameter)
+        {
+            var dataGrd = parameter as DataGrid;
+            ServicePatient.Patient p = _listPatient.ElementAt(dataGrd.SelectedIndex);
+            _dbPatient.DeletePatient(p.Id);
         }
     }
 }
