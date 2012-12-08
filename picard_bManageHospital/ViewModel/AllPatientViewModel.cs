@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.Diagnostics;
 
 namespace picard_bManageHospital.ViewModel
 {
@@ -96,7 +97,10 @@ namespace picard_bManageHospital.ViewModel
             get { return _deleteCommand; }
             set { _deleteCommand = value; }
         }
-
+        
+        /// <summary>
+        /// Ajouter un patient
+        /// </summary>
         private void Add()
         {
             CurrentViewModel = new NewPatientViewModel();
