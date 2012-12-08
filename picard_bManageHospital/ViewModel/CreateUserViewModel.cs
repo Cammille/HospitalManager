@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using System.Windows.Documents;
+using System.Windows.Controls;
 
 namespace picard_bManageHospital.ViewModel
 {
@@ -141,15 +142,26 @@ namespace picard_bManageHospital.ViewModel
             _selectedRole = "";
             _dataAccessUser = new DataAccess.User();
             _status = "Hidden";
-            AddCommand = new RelayCommand(param => Add(), param => true);
+            AddCommand = new RelayCommand(Add);
         }
 
         /// <summary>
         /// Ajout du user
         /// </summary>
-        private void Add()
+        private void Add(object parameter)
         {
-            if (_dataAccessUser.AddUser(Firstname, Name, Login, Password, SelectedRole))
+            var txtPwd = parameter as PasswordBox;
+
+            if (SelectedRole == "0")
+                SelectedRole = "Medecin";
+            else if (SelectedRole == "1")
+                SelectedRole = "Chirurgien";
+            else if (SelectedRole == "2")
+                SelectedRole = "Infirmière";
+            else if (SelectedRole == "3")
+                SelectedRole = "Radiologue";
+
+            if (_dataAccessUser.AddUser(Firstname, Name, Login, txtPwd.Password, SelectedRole))
             {
                 Status = "Visible";
             }

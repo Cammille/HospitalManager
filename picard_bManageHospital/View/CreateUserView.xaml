@@ -4,27 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid  Width="150" Height="Auto">
-        <StackPanel>
-            <Label Content="Ajouter un utilisateur" HorizontalAlignment="Center"/>
-            <Label Content="Prenom" />
-            <TextBox x:Name="txtFirstName" Text="{Binding Firstname, Mode=TwoWay}"/>
-            <Label Content="Nom" />
-            <TextBox x:Name="txtName" Text="{Binding Name, Mode=TwoWay}"/>
-            <Label Content="Login" />
-            <TextBox x:Name="txtLogin" Text="{Binding Login, Mode=TwoWay}"/>
-            <Label Content="Mot de passe" />
-            <TextBox x:Name="txtPwd" Text="{Binding Password, Mode=TwoWay}"/>
-            <Label Content="Role" />
-            <ListBox x:Name="listRoles" SelectedItem="{Binding Path=SelectedRole, Mode=TwoWay}">
-                <ListBoxItem Content="Medecin"/>
-                <ListBoxItem Content="Chirurgien"/>
-                <ListBoxItem Content="Infirmière"/>
-                <ListBoxItem Content="Cardiologue"/>
+             d:DesignHeight="404" d:DesignWidth="300">
+    <Grid  Width="299" Height="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="50" />
+            <RowDefinition MinHeight="50" />
+            <RowDefinition MinHeight="50" />
+            <RowDefinition MinHeight="100" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="105" Width="105" />
+            <ColumnDefinition MinWidth="90" Width="90" />
+            <ColumnDefinition MinWidth="105" Width="105" />
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Center" Margin="0,24,0,26" Grid.Row="3" Grid.RowSpan="2" Grid.Column="1" Width="90">
+            <ListBox x:Name="listRoles" SelectedIndex="{Binding Path=SelectedRole, Mode=TwoWay}" Grid.Row="3" Grid.Column="0">
+                <ListBoxItem Content="Medecin" HorizontalAlignment="Center" />
+                <ListBoxItem Content="Chirurgien" HorizontalAlignment="Center" />
+                <ListBoxItem Content="Infirmière" HorizontalAlignment="Center" />
+                <ListBoxItem Content="Radiologue" HorizontalAlignment="Center" />
             </ListBox>
-            <Button Content="Ajouter" Width="70" Margin="20" Command="{Binding AddCommand}" />
-            <Label x:Name="lblStatus" Content="Utilisateur ajouté!" Visibility="{Binding Status}"/>
         </StackPanel>
+        <Label Content="Ajouter un utilisateur" Margin="90,12,86,13" Grid.ColumnSpan="3" HorizontalAlignment="Center" />
+        <Label Content="Prenom" Grid.Row="1" Margin="0,0,0,25" />
+        <Label Content="Nom" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="99,0,1,25" />
+        <TextBox x:Name="txtFirstName" Text="{Binding Firstname, Mode=TwoWay}" Grid.Row="1" Margin="0,29,0,0" />
+        <TextBox x:Name="txtName" Text="{Binding Name, Mode=TwoWay}" Grid.Row="1" Grid.Column="2" Margin="0,29,1,0" TextChanged="txtName_TextChanged" />
+        <Label Content="Login" Grid.Row="2" Margin="0,0,0,25" />
+        <TextBox x:Name="txtLogin" Text="{Binding Login, Mode=TwoWay}" Grid.Row="2" Margin="0,29,0,0" />
+        <Label Content="Mot de passe" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="99,0,1,25" />
+        <PasswordBox x:Name="txtPwd"  Grid.Row="2" Grid.Column="2" Margin="1,29,1,0" />
+        <Label Content="Role" Grid.Row="3" Margin="0,0,0,73" Grid.Column="1" HorizontalAlignment="Center" />
+        <Button Content="Ajouter" Margin="0,11,0,18" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=txtPwd}" Grid.Row="4" Grid.Column="1" />
+        <Label x:Name="lblStatus" Content="Utilisateur ajouté!" Visibility="{Binding Status}" Grid.Row="5" Margin="97,0,99,8" Grid.ColumnSpan="3" HorizontalAlignment="Center" />
     </Grid>
 </UserControl>
