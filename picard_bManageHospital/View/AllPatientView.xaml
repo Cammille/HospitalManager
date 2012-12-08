@@ -9,7 +9,6 @@
         <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter" />
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter" />
         <converter:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
-        <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter" /> 
         
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="#FF547BDA"/>
