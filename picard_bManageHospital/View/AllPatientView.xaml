@@ -8,13 +8,14 @@
     <UserControl.Resources>
         <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter" />
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter" />
-    
+        <converter:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+        <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter" /> 
+        
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="#FF547BDA"/>
         </Style>
-        <DataTemplate x:Key="pict">
-            <Image Source="{Binding Pictures}" />
-        </DataTemplate>
+
+
     </UserControl.Resources>
 
     <ScrollViewer>
@@ -72,8 +73,16 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal"
                                                 MinWidth="300">
-                                        <ListView ItemTemplate="{Binding pict}"
-                                                  DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
+                                        <ListView ItemsSource="{Binding Pictures}"
+                                                  DataContext="{Binding ElementName=obs, Path=SelectedItem}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Image MaxHeight="30"
+                                                           MaxWidth="30"
+                                                               Source="{Binding Converter={StaticResource ByteArrayToImageConverter}}" />
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal"

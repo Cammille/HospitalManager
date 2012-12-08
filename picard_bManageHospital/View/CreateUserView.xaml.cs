@@ -23,5 +23,15 @@ namespace picard_bManageHospital.View
         {
             InitializeComponent();
         }
+
+        private void txtName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void listRoles_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

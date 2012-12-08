@@ -20,9 +20,6 @@
         <DataTemplate DataType="{x:Type ViewModels:UserManagementViewModel}">
             <Views:UserManagementView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModels:UserViewModel}">
-            <Views:UserView />
-        </DataTemplate>
 
         <Style x:Key="StyleMainGrid">
             <Style.Triggers>
@@ -130,7 +127,7 @@
                             VerticalAlignment="Top"
                             MinWidth="750"
                             MinHeight="400"
-                            MaxHeight="400" />
+                            MaxHeight="500" />
         </StackPanel>
         <Grid DockPanel.Dock="Bottom"
               VerticalAlignment="Bottom">

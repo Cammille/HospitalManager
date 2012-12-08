@@ -16,6 +16,7 @@ namespace picard_bManageHospital.ViewModel
         private ObservableCollection<ServiceUser.User> _listUser = null;
         private ServiceUser.User _selectedUser = null;
         private DataAccess.User _dbUser = new DataAccess.User();
+        private ServiceUser.User User;
 
         #endregion
 
@@ -63,6 +64,13 @@ namespace picard_bManageHospital.ViewModel
         public AllUserViewModel()
         {
             FillListUser();
+        }
+
+        public AllUserViewModel(ServiceUser.User User)
+        {
+
+            FillListUser();
+            SelectedUser = User;
         }
 
         /// <summary>

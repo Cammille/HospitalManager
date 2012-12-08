@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using System.Threading;
+using System.Windows;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
+using System.Windows.Threading;
+using System.ServiceModel;
 
 namespace picard_bManageHospital.ViewModel
 {
@@ -14,6 +19,9 @@ namespace picard_bManageHospital.ViewModel
         private bool _closeSignal;
         private ViewModel.BaseViewModel _currentViewModel;
         private ServiceUser.User _user;
+
+        public ObservableDataSource<Point> SourceTemp { get; set; }
+        public ObservableDataSource<Point> SourceHeart { get; set; }
         
         #endregion
 
@@ -82,6 +90,17 @@ namespace picard_bManageHospital.ViewModel
 
             // Loading default viewmodel
             CurrentViewModel = new PatientManagementViewModel();
+
+            SourceTemp = new ObservableDataSource<Point>();
+            SourceTemp.SetXYMapping(p => p);
+
+            SourceHeart = new ObservableDataSource<Point>();
+            SourceHeart.SetXYMapping(p => p);
+
+            /*
+            ServiceLive.ServiceLiveClient serviceClient = new ServiceLive.ServiceLiveClient();
+            serviceClient.Subscribe();
+             */
         }
 
         /// <summary>
@@ -101,7 +120,7 @@ namespace picard_bManageHospital.ViewModel
         /// </summary>
         private void UserProfile()
         {
-            CurrentViewModel = new UserViewModel(User);
+            CurrentViewModel = new UserManagementViewModel(User);
         }
 
         /// <summary>
@@ -119,5 +138,12 @@ namespace picard_bManageHospital.ViewModel
         {
             CurrentViewModel = new UserManagementViewModel();
         }
+
+        /*
+            internal void PushDataHeart(double d)
+            {
+
+            }
+        */
     }
 }
