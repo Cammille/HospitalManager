@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Input;
 using System.Windows;
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace picard_bManageHospital.ViewModel
 {
@@ -96,15 +97,17 @@ namespace picard_bManageHospital.ViewModel
             _password = "";
             _dataAccessUser = new DataAccess.User();
 
-            LoginCommand = new RelayCommand(param => Connect(), param => true);
+            LoginCommand = new RelayCommand(Connect);
         }
 
         /// <summary>
         /// Authentification
         /// </summary>
-        private void Connect()
+        private void Connect(object parameter)
         {
-            if (_dataAccessUser.Connect(Login, Password))
+            var passwordBox = parameter as PasswordBox;
+
+            if (_dataAccessUser.Connect(Login, passwordBox.Password))
             {
                 View.HomeView window = new View.HomeView();
                 ViewModel.HomeViewModel vm = new HomeViewModel();

@@ -28,8 +28,12 @@
             <Label Content="Identifiant" />
             <TextBox x:Name="loginBox" Text="{Binding Login, Mode=TwoWay}"/>
             <Label Content="Password" />
-            <TextBox x:Name="passwordBox" Text="{Binding Password, Mode=TwoWay}"/>
-            <Button Content="Valider" Width="70" Margin="20" Command="{Binding LoginCommand}" />
+            <PasswordBox x:Name="passwordBox"/>
+            <Button Content="Valider"
+                    Width="70"
+                    Margin="20"
+                    Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding ElementName=passwordBox}" />
         </StackPanel>
     </Grid>
 </Window>
