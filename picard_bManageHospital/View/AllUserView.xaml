@@ -101,7 +101,7 @@
                                        EasingMode="EaseOut" />
                         </DataTemplate.Resources>
                         <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
+                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor,  AncestorType=ListBoxItem}}"
                                          Value="True">
                                 <DataTrigger.EnterActions>
                                     <BeginStoryboard>
