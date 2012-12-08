@@ -15,8 +15,8 @@
         <DataTemplate  DataType="{x:Type ViewModels:AllPatientViewModel}">
             <Views:AllPatientView />
         </DataTemplate>
-        <DataTemplate  DataType="{x:Type ViewModels:AllUserViewModel}">
-            <Views:AllUserView />
+        <DataTemplate  DataType="{x:Type ViewModels:UserManagementViewModel}">
+            <Views:UserManagementView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type ViewModels:UserViewModel}">
             <Views:UserView />

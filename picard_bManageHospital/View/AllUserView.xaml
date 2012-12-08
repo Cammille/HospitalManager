@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converter="clr-namespace:picard_bManageHospital.Converter"
              mc:Ignorable="d"
-             Height="Auto"
-             Width="Auto">
+             MinHeight="600"
+             MinWidth="600">
 
     <UserControl.Resources>
         <converter:BrushColorConverter x:Key="boolConverter" />
@@ -164,45 +164,6 @@
                     Value="Disabled" />
         </Style>
     </UserControl.Resources>
-    <ScrollViewer>
-        <ListBox ItemsSource="{Binding ListUser}"
-                 SelectedItem="{Binding SelectedUser, Mode=TwoWay}" />
-        <!-- <DataGrid ItemsSource="{Binding ListUser}"
-                      AutoGenerateColumns="False"
-                      CanUserReorderColumns="True"
-                      CanUserResizeColumns="True"
-                      CanUserResizeRows="False"
-                      CanUserSortColumns="True"
-                      SelectionUnit="FullRow"
-                      AlternatingRowBackground="Beige"
-                      AlternationCount="2">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Photo">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding Picture}"
-                                       Width="30" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-                    <DataGridTextColumn Header="Identifiant"
-                                        Binding="{Binding Login}" />
-                    <DataGridTextColumn Header="Name"
-                                        Binding="{Binding Name, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
-                    <DataGridTextColumn Header="First Name"
-                                        Binding="{Binding Firstname, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
-                    <DataGridTextColumn Header="Role"
-                                        Binding="{Binding Role, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
-                    <DataGridCheckBoxColumn Header="Connecté"
-                                            Binding="{Binding Connected}"
-                                            IsReadOnly="True" />
-                </DataGrid.Columns>
-                <DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <TextBox Text="{Binding User}" />
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
-            </DataGrid> -->
-    </ScrollViewer>
+    <ListBox ItemsSource="{Binding ListUser}"
+             SelectedItem="{Binding SelectedUser, Mode=TwoWay}" />
 </UserControl>

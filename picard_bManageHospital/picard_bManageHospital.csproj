@@ -93,6 +93,8 @@
     <Compile Include="ViewModel\AllPatientViewModel.cs" />
     <Compile Include="ViewModel\AllUserViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\CreateUserViewModel.cs" />
+    <Compile Include="ViewModel\UserManagementViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\NewPatientViewModel.cs" />
@@ -103,6 +105,9 @@
     <Compile Include="View\AllUserView.xaml.cs">
       <DependentUpon>AllUserView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CreateUserView.xaml.cs">
+      <DependentUpon>CreateUserView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -111,6 +116,8 @@
     </Compile>
     <Compile Include="View\NewPatientView.xaml.cs">
       <DependentUpon>NewPatientView.xaml</DependentUpon>
+    <Compile Include="View\UserManagementView.xaml.cs">
+      <DependentUpon>UserManagementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
@@ -136,6 +143,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CreateUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +158,9 @@
     <Page Include="View\NewPatientView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    <Page Include="View\UserManagementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserView.xaml">
       <SubType>Designer</SubType>
@@ -297,7 +311,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\System.Windows.Controls.DataVisualization.Toolkit.dll" />
+    <Content Include="lib\System.Windows.Controls.DataVisualization.Toolkit.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

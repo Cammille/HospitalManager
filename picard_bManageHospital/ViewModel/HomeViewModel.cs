@@ -117,7 +117,7 @@ namespace picard_bManageHospital.ViewModel
         /// </summary>
         private void AllUser()
         {
-            CurrentViewModel = new AllUserViewModel();
+            CurrentViewModel = new UserManagementViewModel();
         }
     }
 }
