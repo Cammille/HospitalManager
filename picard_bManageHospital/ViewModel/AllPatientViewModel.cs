@@ -14,6 +14,7 @@ namespace picard_bManageHospital.ViewModel
 
         private ObservableCollection<ServicePatient.Patient> _listPatient = null;
         private DataAccess.Patient _dbPatient = new DataAccess.Patient();
+        private ViewModel.BaseViewModel _currentViewModel;
 
         #endregion
 
@@ -36,6 +37,25 @@ namespace picard_bManageHospital.ViewModel
             }
         }
 
+        public ViewModel.BaseViewModel CurrentViewModel
+        {
+            get { return _currentViewModel; }
+            set
+            {
+                if (_currentViewModel != value)
+                {
+                    _currentViewModel = value;
+                    OnPropertyChanged("CurrentViewModel");
+                }
+            }
+        }
+
+        #endregion
+
+        #region commands
+
+        private ICommand _addCommand;
+
         #endregion
 
         /// <summary>
@@ -44,6 +64,7 @@ namespace picard_bManageHospital.ViewModel
         public AllPatientViewModel()
         {
             FillListPatient();
+            AddCommand = new RelayCommand(param => Add(), param => true);
         }
 
         /// <summary>
@@ -53,6 +74,20 @@ namespace picard_bManageHospital.ViewModel
         {
             // Transformation en Observable collection pour l'interface
             ListPatient = new ObservableCollection<ServicePatient.Patient>(_dbPatient.GetListPatient());
+        }
+
+        /// <summary>
+        /// command pour ajouter un patient
+        /// </summary>
+        public ICommand AddCommand
+        {
+            get { return _addCommand; }
+            set { _addCommand = value; }
+        }
+
+        private void Add()
+        {
+            CurrentViewModel = new NewPatientViewModel();
         }
     }
 }

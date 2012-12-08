@@ -1,0 +1,17 @@
+﻿<Window x:Class="picard_bManageHospital.View.NewPatientView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NewPatientView" Height="300" Width="300">
+    <Grid>
+        <StackPanel>
+            <Label Content="Ajouter un patient" HorizontalAlignment="Center"/>
+            <Label Content="Firstname" />
+            <TextBox x:Name="txtFirstName" Text="{Binding Firstname, Mode=TwoWay}"/>
+            <Label Content="Name" />
+            <TextBox x:Name="txtName" Text="{Binding Name, Mode=TwoWay}"/>
+            <Label Content="Birthday" />
+            <DatePicker x:Name="dateBirthday" Text="{Binding Birthday, Mode=TwoWay}"/>
+            <Button Content="Ajouter" Width="70" Margin="20" Command="{Binding AddCommand}" />
+        </StackPanel>
+    </Grid>
+</Window>

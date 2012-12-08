@@ -9,21 +9,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace picard_bManageHospital.View
 {
-    public partial class AllPatientView : UserControl
+    /// <summary>
+    /// Interaction logic for NewPatientView.xaml
+    /// </summary>
+    public partial class NewPatientView : Window
     {
-        public AllPatientView()
+        public NewPatientView()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

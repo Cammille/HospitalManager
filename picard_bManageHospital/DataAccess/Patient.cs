@@ -22,5 +22,24 @@ namespace picard_bManageHospital.DataAccess
             }
             return serviceListPatient;
         }
+
+        public bool AddPatient(String Firstname, String Name, DateTime Birthday)
+        {
+            try
+            {
+                ServicePatient.Patient patient = new ServicePatient.Patient();
+                patient.Firstname = Firstname;
+                patient.Name = Name;
+                patient.Birthday = Birthday;
+                new ServicePatient.ServicePatientClient().AddPatient(patient);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //traitement exception ...
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
+        }
     }
 }
