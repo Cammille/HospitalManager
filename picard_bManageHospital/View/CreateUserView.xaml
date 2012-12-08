@@ -8,13 +8,13 @@
     <Grid  Width="150" Height="Auto">
         <StackPanel>
             <Label Content="Ajouter un utilisateur" HorizontalAlignment="Center"/>
-            <Label Content="Firstname" />
+            <Label Content="Prenom" />
             <TextBox x:Name="txtFirstName" Text="{Binding Firstname, Mode=TwoWay}"/>
-            <Label Content="Name" />
+            <Label Content="Nom" />
             <TextBox x:Name="txtName" Text="{Binding Name, Mode=TwoWay}"/>
             <Label Content="Login" />
             <TextBox x:Name="txtLogin" Text="{Binding Login, Mode=TwoWay}"/>
-            <Label Content="Password" />
+            <Label Content="Mot de passe" />
             <TextBox x:Name="txtPwd" Text="{Binding Password, Mode=TwoWay}"/>
             <Label Content="Role" />
             <ListBox x:Name="listRoles" SelectedItem="{Binding Path=SelectedRole, Mode=TwoWay}">

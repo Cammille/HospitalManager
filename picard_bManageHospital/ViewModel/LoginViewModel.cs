@@ -45,6 +45,11 @@ namespace picard_bManageHospital.ViewModel
             }
         }
 
+        public bool CanConnect
+        {
+            get { return !String.IsNullOrEmpty(Login); }
+        }
+
         /// <summary>
         /// indique si on doit fermer la fenêtre ou non
         /// </summary>

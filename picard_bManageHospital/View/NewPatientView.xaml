@@ -4,11 +4,11 @@
     <Grid  Width="150" Height="Auto" >
         <StackPanel>
             <Label Content="Ajouter un patient" HorizontalAlignment="Center"/>
-            <Label Content="Firstname" />
+            <Label Content="Prenom" />
             <TextBox x:Name="txtFirstName" Text="{Binding Firstname, Mode=TwoWay}"/>
-            <Label Content="Name" />
+            <Label Content="Nom" />
             <TextBox x:Name="txtName" Text="{Binding Name, Mode=TwoWay}"/>
-            <Label Content="Birthday" />
+            <Label Content="Date de naissance" />
             <DatePicker x:Name="dateBirthday" Text="{Binding Birthday, Mode=TwoWay}"/>
             <Button Content="Ajouter" Width="70" Margin="20" Command="{Binding AddCommand}" />
             <Label x:Name="lblStatus" Content="Patient ajouté!" Visibility="{Binding Status}"/>

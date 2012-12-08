@@ -5,17 +5,18 @@
         xmlns:ViewModels="clr-namespace:picard_bManageHospital.ViewModel"
         xmlns:Behaviours="clr-namespace:picard_bManageHospital"
         xmlns:converter="clr-namespace:picard_bManageHospital.Converter"
+        xmlns:DynamicDataDisplay="clr-namespace:Microsoft.Research.DynamicDataDisplay;assembly=DynamicDataDisplay"
         Title="ManageHospital"
         Height="768"
         Width="1024">
 
     <Window.Resources>
-        <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter"/>
+        <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter" />
 
-        <DataTemplate  DataType="{x:Type ViewModels:PatientManagementViewModel}">
+        <DataTemplate DataType="{x:Type ViewModels:PatientManagementViewModel}">
             <Views:PatientManagementView />
         </DataTemplate>
-        <DataTemplate  DataType="{x:Type ViewModels:UserManagementViewModel}">
+        <DataTemplate DataType="{x:Type ViewModels:UserManagementViewModel}">
             <Views:UserManagementView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type ViewModels:UserViewModel}">
@@ -31,21 +32,62 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+
+        <SolidColorBrush x:Key="lightBackground"
+                         Color="#3A7899" />
+
+        <LinearGradientBrush x:Key="darkBackground"
+                             EndPoint="0,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStop Color="#234B61"
+                              Offset="0" />
+                <GradientStop Color="#234B61"
+                              Offset="1" />
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="background"
+                             EndPoint="0,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStop Color="#3A7899"
+                              Offset="0" />
+                <GradientStop Color="#164052"
+                              Offset="1" />
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="selBackground"
+                             EndPoint="0,1">
+            <LinearGradientBrush.GradientStops>
+                <GradientStop Color="#dd444444"
+                              Offset="0" />
+                <GradientStop Color="#dd202529"
+                              Offset="1" />
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <SolidColorBrush x:Key="lightForeground"
+                         Color="#f0f0f0" />
+        <SolidColorBrush x:Key="darkForeground"
+                         Color="#661313" />
     </Window.Resources>
 
-    <Grid Style="{StaticResource StyleMainGrid}">
-        <StackPanel>
+    <DockPanel LastChildFill="True"
+               Style="{StaticResource StyleMainGrid}">
+        <StackPanel DockPanel.Dock="Top">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         Margin="10">
-                <Image Source="{Binding User.Picture}" Width="50" />
+                <Image Source="{Binding User.Picture}"
+                       Width="50" />
                 <Label Content="Bonjour,"
-                       HorizontalAlignment="Right" 
-                        Height="25"/>
-                <TextBlock Margin="0,5" Height="25">
-                    <Hyperlink Command="{Binding UserProfileCommand}" >
-                        <TextBlock Text="{Binding User.Login, Converter={StaticResource FirstLetterUpperCaseConverter}}" 
-                        Height="25"/>
+                       HorizontalAlignment="Right"
+                       Height="25" />
+                <TextBlock Margin="0,5"
+                           Height="25">
+                    <Hyperlink Command="{Binding UserProfileCommand}">
+                        <TextBlock Text="{Binding User.Login, Converter={StaticResource FirstLetterUpperCaseConverter}}"
+                                   Height="25" />
                     </Hyperlink>
                 </TextBlock>
                 <Button Content="Déconnexion"
@@ -62,9 +104,42 @@
                         Width="100"
                         Command="{Binding AllUserCommand}" />
             </StackPanel>
-            
             <ContentControl Content="{Binding CurrentViewModel}"
-                            VerticalAlignment="Top" />
+                            VerticalAlignment="Top"
+                            MinWidth="750"
+                            MinHeight="400"
+                            MaxHeight="400" />
         </StackPanel>
-    </Grid>
+        <Grid DockPanel.Dock="Bottom"
+              VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150" />
+            </Grid.RowDefinitions>
+
+            <Border Margin="5"
+                    Padding="5"
+                    Background="{StaticResource lightBackground}"
+                    CornerRadius="0,0,5,5"
+                    BorderBrush="#1e1e1e"
+                    BorderThickness="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Live charts -->
+                    <DynamicDataDisplay:ChartPlotter x:Name="dataGrid_fever"
+                                                     Grid.Column="0"
+                                                     Background="Transparent"
+                                                     Foreground="{StaticResource lightForeground}" />
+                    <DynamicDataDisplay:ChartPlotter x:Name="dataGrid_heart"
+                                                     Grid.Column="1"
+                                                     Background="Transparent"
+                                                     Foreground="{StaticResource lightForeground}" />
+                </Grid>
+            </Border>
+        </Grid>
+
+    </DockPanel>
 </Window>

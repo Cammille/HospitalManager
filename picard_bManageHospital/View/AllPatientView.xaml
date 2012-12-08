@@ -1,98 +1,99 @@
 ﻿<UserControl x:Class="picard_bManageHospital.View.AllPatientView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Height="600"
-             Width="750"
              xmlns:converter="clr-namespace:picard_bManageHospital.Converter"
-             xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit">
+             xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             MaxHeight="400">
 
     <UserControl.Resources>
         <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter" />
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter" />
-        
+
         <DataTemplate x:Key="pict">
             <Image Source="{Binding Pictures}" />
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid>
-        <DockPanel>
-            <DataGrid ItemsSource="{Binding ListPatient}"
-                      AutoGenerateColumns="False"
-                      CanUserReorderColumns="True"
-                      CanUserResizeColumns="True"
-                      CanUserResizeRows="False"
-                      CanUserSortColumns="True"
-                      SelectionUnit="FullRow"
-                      AlternatingRowBackground="Beige"
-                      AlternationCount="2">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button>Supprimer</Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Name"
-                                        Binding="{Binding Name, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
-                    <DataGridTextColumn Header="First Name"
-                                        Binding="{Binding Firstname, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
-                    <DataGridTextColumn Header="Date de naissance"
-                                        Binding="{Binding Birthday, Converter={StaticResource DateToFormattedDateConverter}}" />
-                </DataGrid.Columns>
-                <DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <StackPanel Orientation="Vertical">
-                                <Label Content="Consultation du :" />
-                                <ComboBox ItemsSource="{Binding Observations}"
-                                          SelectedItem="{Binding Observations}"
-                                          DisplayMemberPath="Date"
-                                          Width="150"
-                                          HorizontalAlignment="Left"
-                                          x:Name="obs" />
+    <ScrollViewer>
+        <Grid>
+            <DockPanel>
+                <DataGrid ItemsSource="{Binding ListPatient}"
+                          AutoGenerateColumns="False"
+                          CanUserReorderColumns="True"
+                          CanUserResizeColumns="True"
+                          CanUserResizeRows="False"
+                          CanUserSortColumns="True"
+                          SelectionUnit="FullRow"
+                          AlternatingRowBackground="Beige"
+                          AlternationCount="2">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button>Supprimer</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Name"
+                                            Binding="{Binding Name, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
+                        <DataGridTextColumn Header="First Name"
+                                            Binding="{Binding Firstname, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
+                        <DataGridTextColumn Header="Date de naissance"
+                                            Binding="{Binding Birthday, Converter={StaticResource DateToFormattedDateConverter}}" />
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Consultation du :" />
+                                    <ComboBox ItemsSource="{Binding Observations}"
+                                              SelectedItem="{Binding Observations}"
+                                              DisplayMemberPath="Date"
+                                              Width="150"
+                                              HorizontalAlignment="Left"
+                                              x:Name="obs" />
 
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="Commentaire" />
-                                    <TextBlock Text="{Binding Comment}"
-                                               DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="Prescription" />
-                                    <ListView ItemsSource="{Binding Prescription}"
-                                              DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Commentaire" />
+                                        <TextBlock Text="{Binding Comment}"
+                                                   DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Prescription" />
+                                        <ListView ItemsSource="{Binding Prescription}"
+                                                  DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal"
+                                                MinWidth="300">
+                                        <ListView ItemTemplate="{Binding pict}"
+                                                  DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
+                                    </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal"
-                                            MinWidth="300">
-                                    <ListView ItemTemplate="{Binding pict}"
-                                              DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
+                                            HorizontalAlignment="Left">
+                                    <chartingToolkit:Chart Title="Courbe de poids"
+                                                           Name="chartWeight"
+                                                           Width="350"
+                                                           Height="200">
+                                        <chartingToolkit:LineSeries ItemsSource="{Binding Observations}"
+                                                                    DependentValueBinding="{Binding Path=Weight}"
+                                                                    IndependentValueBinding="{Binding Path=Date}"
+                                                                    AnimationSequence="FirstToLast" />
+                                    </chartingToolkit:Chart>
+                                    <chartingToolkit:Chart Title="Courbe de pression"
+                                                           Name="chartPressure"
+                                                           Width="350"
+                                                           Height="200">
+                                        <chartingToolkit:LineSeries ItemsSource="{Binding Observations}"
+                                                                    DependentValueBinding="{Binding Path=BloodPressure}"
+                                                                    IndependentValueBinding="{Binding Path=Date}" />
+                                    </chartingToolkit:Chart>
                                 </StackPanel>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Left">
-                                <chartingToolkit:Chart Title="Courbe de poids"
-                                                       Name="chartWeight"
-                                                       Width="350"
-                                                       Height="200">
-                                    <chartingToolkit:LineSeries ItemsSource="{Binding Observations}"
-                                                                DependentValueBinding="{Binding Path=Weight}"
-                                                                IndependentValueBinding="{Binding Path=Date}"
-                                                                AnimationSequence="FirstToLast" />
-                                </chartingToolkit:Chart>
-                                <chartingToolkit:Chart Title="Courbe de pression"
-                                                       Name="chartPressure"
-                                                       Width="350"
-                                                       Height="200">
-                                    <chartingToolkit:LineSeries ItemsSource="{Binding Observations}"
-                                                                DependentValueBinding="{Binding Path=BloodPressure}"
-                                                                IndependentValueBinding="{Binding Path=Date}" />
-                                </chartingToolkit:Chart>
-                            </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
-            </DataGrid>
-        </DockPanel>
-    </Grid>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+            </DockPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

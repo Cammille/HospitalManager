@@ -20,7 +20,8 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <StackPanel VerticalAlignment="Center"
+        <StackPanel Orientation="Horizontal"
+            VerticalAlignment="Center"
                     Margin="20">
             <Button Width="150"
                     Command="{Binding AllPatientCommand}">Liste des patients</Button>

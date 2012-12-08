@@ -36,7 +36,7 @@
                     Margin="20"
                     Command="{Binding LoginCommand}"
                     CommandParameter="{Binding ElementName=passwordBox}"
-                    IsEnabled="{Binding CanConnect, Mode=TwoWay}"/>
+                    IsEnabled="{Binding CanConnect}"/>
         </StackPanel>
     </Grid>
 </Window>
