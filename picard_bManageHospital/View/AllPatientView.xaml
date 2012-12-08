@@ -3,15 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converter="clr-namespace:picard_bManageHospital.Converter"
              xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
-             MaxHeight="400">
+             MaxHeight="650">
 
     <UserControl.Resources>
         <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter" />
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter" />
         <converter:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
-        
+
         <Style TargetType="Label">
-            <Setter Property="Foreground" Value="#FF547BDA"/>
+            <Setter Property="Foreground"
+                    Value="#FF547BDA" />
         </Style>
 
 
@@ -20,7 +21,8 @@
     <ScrollViewer>
         <Grid>
             <DockPanel>
-                <DataGrid x:Name="dataGrid" ItemsSource="{Binding ListPatient}"
+                <DataGrid x:Name="dataGrid"
+                          ItemsSource="{Binding ListPatient}"
                           AutoGenerateColumns="False"
                           CanUserReorderColumns="True"
                           CanUserResizeColumns="True"
@@ -33,7 +35,8 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=dataGrid}">Supprimer</Button>
+                                    <Button Command="{Binding DeleteCommand}"
+                                            CommandParameter="{Binding ElementName=dataGrid}">Supprimer</Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -48,27 +51,33 @@
                         <DataTemplate>
                             <StackPanel>
                                 <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Horizontal" Margin="20">
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="20">
                                         <Label Content="Consultation du :" />
                                         <ComboBox ItemsSource="{Binding Observations}"
-                                              SelectedItem="{Binding Observations}"
-                                              DisplayMemberPath="Date"
-                                              Width="150"
-                                              HorizontalAlignment="Left"
-                                              x:Name="obs" />
+                                                  SelectedItem="{Binding Observations}"
+                                                  SelectedIndex="0"
+                                                  DisplayMemberPath="Date"
+                                                  Width="150"
+                                                  HorizontalAlignment="Left"
+                                                  x:Name="obs" />
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20">
+                                    <StackPanel Orientation="Horizontal"
+                                                VerticalAlignment="Center"
+                                                Margin="20">
                                         <Label Content="Commentaire" />
                                         <TextBlock Text="{Binding Comment}"
-                                                   DataContext="{Binding ElementName=obs, Path=SelectedItem}" 
+                                                   DataContext="{Binding ElementName=obs, Path=SelectedItem}"
                                                    TextWrapping="WrapWithOverflow"
                                                    MaxWidth="800"
-                                                   TextAlignment="Justify"/>
+                                                   TextAlignment="Justify" />
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal"
+                                                VerticalAlignment="Center">
                                         <Label Content="Prescription" />
                                         <ListView ItemsSource="{Binding Prescription}"
-                                                  DataContext="{Binding ElementName=obs, Path=SelectedItem}" Padding="10"/>
+                                                  DataContext="{Binding ElementName=obs, Path=SelectedItem}"
+                                                  Padding="10" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal"
                                                 MinWidth="300">
@@ -78,7 +87,7 @@
                                                 <DataTemplate>
                                                     <Image MaxHeight="30"
                                                            MaxWidth="30"
-                                                               Source="{Binding Converter={StaticResource ByteArrayToImageConverter}}" />
+                                                           Source="{Binding Converter={StaticResource ByteArrayToImageConverter}}" />
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
                                         </ListView>
