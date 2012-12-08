@@ -8,10 +8,13 @@
     <UserControl.Resources>
         <converter:DateToFormattedDateConverter x:Key="DateToFormattedDateConverter" />
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter" />
+        <converter:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+        
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#FF547BDA"/>
+        </Style>
 
-        <DataTemplate x:Key="pict">
-            <Image Source="{Binding Pictures}" />
-        </DataTemplate>
+
     </UserControl.Resources>
 
     <ScrollViewer>
@@ -34,9 +37,9 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Name"
+                        <DataGridTextColumn Header="Nom"
                                             Binding="{Binding Name, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
-                        <DataGridTextColumn Header="First Name"
+                        <DataGridTextColumn Header="Prénom"
                                             Binding="{Binding Firstname, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
                         <DataGridTextColumn Header="Date de naissance"
                                             Binding="{Binding Birthday, Converter={StaticResource DateToFormattedDateConverter}}" />
@@ -45,28 +48,40 @@
                         <DataTemplate>
                             <StackPanel>
                                 <StackPanel Orientation="Vertical">
-                                    <Label Content="Consultation du :" />
-                                    <ComboBox ItemsSource="{Binding Observations}"
+                                    <StackPanel Orientation="Horizontal" Margin="20">
+                                        <Label Content="Consultation du :" />
+                                        <ComboBox ItemsSource="{Binding Observations}"
                                               SelectedItem="{Binding Observations}"
                                               DisplayMemberPath="Date"
                                               Width="150"
                                               HorizontalAlignment="Left"
                                               x:Name="obs" />
-
-                                    <StackPanel Orientation="Horizontal">
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20">
                                         <Label Content="Commentaire" />
                                         <TextBlock Text="{Binding Comment}"
-                                                   DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
+                                                   DataContext="{Binding ElementName=obs, Path=SelectedItem}" 
+                                                   TextWrapping="WrapWithOverflow"
+                                                   MaxWidth="800"
+                                                   TextAlignment="Justify"/>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <Label Content="Prescription" />
                                         <ListView ItemsSource="{Binding Prescription}"
-                                                  DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
+                                                  DataContext="{Binding ElementName=obs, Path=SelectedItem}" Padding="10"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal"
                                                 MinWidth="300">
-                                        <ListView ItemTemplate="{Binding pict}"
-                                                  DataContext="{Binding ElementName=obs, Path=SelectedItem}" />
+                                        <ListView ItemsSource="{Binding Pictures}"
+                                                  DataContext="{Binding ElementName=obs, Path=SelectedItem}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Image MaxHeight="30"
+                                                           MaxWidth="30"
+                                                               Source="{Binding Converter={StaticResource ByteArrayToImageConverter}}" />
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal"

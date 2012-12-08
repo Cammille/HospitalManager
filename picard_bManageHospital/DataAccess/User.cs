@@ -10,7 +10,14 @@ namespace picard_bManageHospital.DataAccess
     {
         public bool Connect(string login, string pwd)
         {
-            return new ServiceUser.ServiceUserClient().Connect(login, pwd);
+            try
+            {
+                return new ServiceUser.ServiceUserClient().Connect(login, pwd);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public ServiceUser.User GetUser(string login)

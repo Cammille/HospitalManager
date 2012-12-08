@@ -73,6 +73,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\BoolToColorConverter.cs" />
+    <Compile Include="Converter\ByteArrayToImageConverter.cs" />
     <Compile Include="Converter\DateToFormattedDateConverter.cs" />
     <Compile Include="Converter\FirstLetterUpperCaseConverter.cs" />
     <Compile Include="DataAccess\Patient.cs" />
@@ -326,6 +327,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\logout.png" />
+    <Resource Include="Images\logo.png" />
     <Content Include="lib\DynamicDataDisplay.Controls.dll" />
     <Content Include="lib\DynamicDataDisplay.dll" />
     <Content Include="lib\DynamicDataDisplay.resources.dll" />
