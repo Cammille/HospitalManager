@@ -6,7 +6,6 @@ using System.ComponentModel;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Diagnostics;
 
 namespace picard_bManageHospital.ViewModel
 {

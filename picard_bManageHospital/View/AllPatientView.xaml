@@ -28,15 +28,9 @@
                           CanUserSortColumns="True"
                           SelectionUnit="FullRow"
                           AlternatingRowBackground="Beige"
-                          AlternationCount="2">
+                          AlternationCount="2"
+                          IsReadOnly="True">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn>
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=dataGrid}">Supprimer</Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                         <DataGridTextColumn Header="Nom"
                                             Binding="{Binding Name, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
                         <DataGridTextColumn Header="Prénom"

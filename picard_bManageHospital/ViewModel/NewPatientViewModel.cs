@@ -107,7 +107,7 @@ namespace picard_bManageHospital.ViewModel
         {
             _firstname = "";
             _name = "";
-            _birthday = new DateTime();
+            _birthday = DateTime.Now;
             _dataAccessPatient = new DataAccess.Patient();
             _status = "Hidden";
             AddCommand = new RelayCommand(param => Add(), param => true);
