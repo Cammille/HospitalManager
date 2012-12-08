@@ -67,6 +67,21 @@ namespace picard_bManageHospital.ViewModel
         }
 
         /// <summary>
+        /// Constructeur
+        /// </summary>
+        public UserManagementViewModel(ServiceUser.User user)
+        {
+            // Set-up commands
+            CreateUserCommand = new RelayCommand(param => CreateUser(), param => true);
+            AllUserCommand = new RelayCommand(param => AllUser(), param => true);
+
+            // Loading default viewmodel
+            CurrentViewModel = new AllUserViewModel(User);
+
+            User = user;
+        }
+
+        /// <summary>
         /// liste utilisateurs
         /// </summary>
         private void AllUser()

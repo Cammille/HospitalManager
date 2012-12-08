@@ -19,9 +19,6 @@
         <DataTemplate DataType="{x:Type ViewModels:UserManagementViewModel}">
             <Views:UserManagementView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModels:UserViewModel}">
-            <Views:UserView />
-        </DataTemplate>
 
         <Style x:Key="StyleMainGrid">
             <Style.Triggers>

@@ -108,7 +108,6 @@
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\NewPatientViewModel.cs" />
-    <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="View\AllPatientView.xaml.cs">
       <DependentUpon>AllPatientView.xaml</DependentUpon>
     </Compile>
@@ -132,9 +131,6 @@
     </Compile>
     <Compile Include="View\UserManagementView.xaml.cs">
       <DependentUpon>UserManagementView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserView.xaml.cs">
-      <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowCloseBehaviour.cs" />
     <Page Include="MainWindow.xaml">
@@ -182,10 +178,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UserManagementView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -334,6 +326,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lib\DynamicDataDisplay.Controls.dll" />
+    <Content Include="lib\DynamicDataDisplay.dll" />
+    <Content Include="lib\DynamicDataDisplay.resources.dll" />
     <Content Include="lib\System.Windows.Controls.DataVisualization.Toolkit.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
