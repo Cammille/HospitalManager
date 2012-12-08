@@ -31,8 +31,9 @@ namespace picard_bManageHospital.DataAccess
                 patient.Firstname = Firstname;
                 patient.Name = Name;
                 patient.Birthday = Birthday;
-                new ServicePatient.ServicePatientClient().AddPatient(patient);
-                return true;
+                if (new ServicePatient.ServicePatientClient().AddPatient(patient))
+                    return true;
+                return false;
             }
             catch (Exception ex)
             {

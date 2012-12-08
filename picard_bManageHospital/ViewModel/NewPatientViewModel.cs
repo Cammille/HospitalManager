@@ -14,6 +14,7 @@ namespace picard_bManageHospital.ViewModel
         private string _firstname;
         private string _name;
         private DateTime _birthday;
+        private string _status;
 
         #endregion
 
@@ -75,6 +76,19 @@ namespace picard_bManageHospital.ViewModel
             }
         }
 
+        public string Status
+        {
+            get { return _status; }
+            set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    OnPropertyChanged("Status");
+                }
+            }
+        }
+
         /// <summary>
         /// command pour ajouter un patient
         /// </summary>
@@ -95,7 +109,7 @@ namespace picard_bManageHospital.ViewModel
             _name = "";
             _birthday = new DateTime();
             _dataAccessPatient = new DataAccess.Patient();
-
+            _status = "Hidden";
             AddCommand = new RelayCommand(param => Add(), param => true);
         }
 
@@ -106,6 +120,7 @@ namespace picard_bManageHospital.ViewModel
         {
             if (_dataAccessPatient.AddPatient(Firstname, Name, Birthday))
             {
+                Status = "Visible";
             }
         }
     }

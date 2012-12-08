@@ -11,9 +11,9 @@
 
     <Window.Resources>
         <converter:FirstLetterUpperCaseConverter x:Key="FirstLetterUpperCaseConverter"/>
-        
-        <DataTemplate  DataType="{x:Type ViewModels:AllPatientViewModel}">
-            <Views:AllPatientView />
+
+        <DataTemplate  DataType="{x:Type ViewModels:PatientManagementViewModel}">
+            <Views:PatientManagementView />
         </DataTemplate>
         <DataTemplate  DataType="{x:Type ViewModels:UserManagementViewModel}">
             <Views:UserManagementView />

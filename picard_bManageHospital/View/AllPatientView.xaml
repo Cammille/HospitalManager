@@ -27,16 +27,13 @@
                       AlternatingRowBackground="Beige"
                       AlternationCount="2">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Patients" Width="Auto">
-                        <DataGridTextColumn.HeaderTemplate>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Grid.Row="1">
-                                    <TextBlock Text="Patient"></TextBlock>
-                                    <Button Height="22" Width="Auto" Content="Ajouter Patient" Command="{Binding AddCommand}" ></Button>
-                                </StackPanel>
+                                <Button>Supprimer</Button>
                             </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Name"
                                         Binding="{Binding Name, Converter={StaticResource FirstLetterUpperCaseConverter}}" />
                     <DataGridTextColumn Header="First Name"

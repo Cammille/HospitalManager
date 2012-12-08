@@ -16,7 +16,7 @@ namespace picard_bManageHospital.View
     /// <summary>
     /// Interaction logic for NewPatientView.xaml
     /// </summary>
-    public partial class NewPatientView : Window
+    public partial class NewPatientView : UserControl
     {
         public NewPatientView()
         {

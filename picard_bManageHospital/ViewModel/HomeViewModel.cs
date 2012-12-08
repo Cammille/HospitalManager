@@ -81,7 +81,7 @@ namespace picard_bManageHospital.ViewModel
             AllUserCommand = new RelayCommand(param => AllUser(), param => true);
 
             // Loading default viewmodel
-            CurrentViewModel = new AllPatientViewModel();
+            CurrentViewModel = new PatientManagementViewModel();
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace picard_bManageHospital.ViewModel
         /// </summary>
         private void AllPatient()
         {
-            CurrentViewModel = new AllPatientViewModel();
+            CurrentViewModel = new PatientManagementViewModel();
         }
 
         /// <summary>
